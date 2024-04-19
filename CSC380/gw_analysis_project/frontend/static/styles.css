@@ -1,0 +1,81 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 220px;
+    height: 100%;
+    background-color: #163752;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(101, 146, 230, 0.221);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center horizontally */
+    /* justify-content: center; center vertically */
+    gap: 10px;
+}
+
+.content {
+    margin-left: 150px; /* accommodate sidebar width */
+    height: calc(100% - 40px);
+    padding: 20px;
+    overflow: auto; /* added scrollbars */
+}
+
+input[type="file"] {
+    margin-bottom: 10px;
+}
+
+.sidebar-title {
+    color: #fdfdfd;
+    text-align: center;
+    margin-bottom: 20px; /* space between title and first button */
+    font-size: 32px;
+    width: 100%;
+    word-wrap: break-word; /* prevent title from overflowing */
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* add shadow around title */
+}
+
+.button {
+    display: flex;
+    flex-direction: column; /* stack vertically */
+    align-items: center; /* center horizontally */
+    justify-content: center; /* center vertically */
+    gap: 5px; /* space between icon and text */
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    background-color: #163752;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    width: 150px;
+    text-align: center;
+    text-decoration: none; /* since <a> tags instead of <div> */
+}
+
+.button img {
+    width: 58px; /* icon size */
+    height: auto;
+}
+
+.button span {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
