@@ -1,0 +1,34 @@
+version: '2.2.3'
+
+services:
+  #frontend
+  frontend:
+    image: dzaug/csc380_front_end_image:latest
+    privileged: true
+    volumes:
+      - text-in:/python-docker/uploads
+      - pdf-out:/python-docker/PDF
+    #port is arbitary
+    ports:
+      - 10761:5000	
+  #backend
+  backend:
+    image: dzaug/csc380_back_end_image:latest
+    #keep the backend running
+    depends_on:
+      - frontend
+    tty: true
+    init: true
+    privileged: true
+    volumes: 
+      - text-in:/src/profile
+      - pdf-out:/src/data
+
+networks:
+  default:
+    driver: bridge
+    name: internalnetwork
+
+volumes:
+  text-in:
+  pdf-out:
