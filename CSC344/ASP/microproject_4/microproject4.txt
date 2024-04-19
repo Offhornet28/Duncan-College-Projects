@@ -1,0 +1,7 @@
+%Duncan Zaug
+%microproject 4
+
+node(0..3,0..3)
+node2(X,Y) :- ((X-1)**2) + ((Y-2)**2) < 4, node(X,Y).
+
+#show node2/2
