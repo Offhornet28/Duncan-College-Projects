@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>LocomotionListener.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #1750eb;}
+.s4 { color: #067d17;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+LocomotionListener.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ *Locomotion Listener Program 
+ */</span>
+<span class="s2">package </span><span class="s0">mmw;</span>
+<span class="s2">import </span><span class="s0">composer.SComposer;</span>
+
+<span class="s2">public class </span><span class="s0">LocomotionListener {</span>
+    <span class="s2">public static void </span><span class="s0">main(String[] args) {</span>
+        <span class="s1">//Create the new composer</span>
+        <span class="s0">SComposer e = </span><span class="s2">new </span><span class="s0">SComposer();</span>
+        <span class="s1">//make the composer print text</span>
+        <span class="s0">e.text();</span>
+        <span class="s1">//I like the key A better than C (even thought C# would have been better)</span>
+        <span class="s1">//Lowers the pitch of the composer by 2 steps</span>
+        <span class="s0">e.lp(</span><span class="s3">2</span><span class="s0">);</span>
+        <span class="s1">//Prints out what is going to be play, then plays the code, then calls &quot;space&quot;</span>
+        <span class="s1">//This is true for every line that starts with &quot;System.out.println&quot;</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;e.mms_87_Stroll ...&quot;</span><span class="s0">); e.mms_87_Stroll(); space(e);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;e.mms_87_Hill ...&quot;</span><span class="s0">); e.mms_87_Hill(); space(e);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;e.mms_85_HillFlat ...&quot;</span><span class="s0">); e.mms_85_HillFlat(); space(e);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;e.mms_86_HillStones ...&quot;</span><span class="s0">); e.mms_86_HillStones(); space(e);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;e.mms_87_ZigZag ...&quot;</span><span class="s0">); e.mms_87_ZigZag(); space(e);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;e.mms_87_StrollUpDown ...&quot;</span><span class="s0">); e.mms_87_StrollUpDown(); space(e);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;e.mms_87_ZagZig ...&quot;</span><span class="s0">); e.mms_87_ZagZig(); space(e);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;e.mms_85_HillFlat() ...&quot;</span><span class="s0">); e.mms_85_HillFlat(); space(e);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;e.mms_85_StrollDown ...&quot;</span><span class="s0">); e.mms_85_StrollDown(); space(e);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;e.mms_87_Stroll ...&quot;</span><span class="s0">); e.mms_87_Stroll(); space(e);</span>
+        <span class="s1">//Makes sure that texts stops printing after the final time &quot;space&quot; is called upon</span>
+        <span class="s0">e.untext();</span>
+    <span class="s0">}</span>
+    <span class="s1">//Code that makes the composer rest for 1/2 sec and change lines in between each score</span>
+    <span class="s2">private static void </span><span class="s0">space(SComposer e) {</span>
+        <span class="s0">e.untext(); e.rest(</span><span class="s3">1</span><span class="s0">/</span><span class="s3">2</span><span class="s0">); e.text();</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Test2.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+.s1 { color: #808080;}
+.s2 { color: #cc7832;}
+.s3 { color: #6a8759;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Test2.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * Scanner circle test 
+ */</span>
+<span class="s2">package </span><span class="s0">Testing_Bed</span><span class="s2">;</span>
+<span class="s2">import </span><span class="s0">java.awt.Color</span><span class="s2">;</span>
+<span class="s2">import </span><span class="s0">javax.swing.SwingUtilities</span><span class="s2">;</span>
+<span class="s2">import </span><span class="s0">painter.SPainter</span><span class="s2">;</span>
+<span class="s2">import </span><span class="s0">shapes.SCircle</span><span class="s2">;</span>
+<span class="s2">import </span><span class="s0">java.util.Scanner</span><span class="s2">;</span>
+<span class="s2">import </span><span class="s0">javax.swing.JColorChooser</span><span class="s2">;</span>
+<span class="s2">public class </span><span class="s0">Test2 {</span>
+    <span class="s1">//Draw Code</span>
+    <span class="s2">private void </span><span class="s0">paintTheImage() {</span>
+        <span class="s0">Scanner scanner = </span><span class="s2">new </span><span class="s0">Scanner(System.in)</span><span class="s2">;</span>
+        <span class="s0">System.out.print(</span><span class="s3">&quot;Enter Circle Radius: &quot;</span><span class="s0">)</span><span class="s2">;</span>
+        <span class="s2">int </span><span class="s0">input = scanner.nextInt()</span><span class="s2">;</span>
+        <span class="s2">double </span><span class="s0">radius = input</span><span class="s2">;</span>
+        <span class="s0">SCircle dot = </span><span class="s2">new </span><span class="s0">SCircle(radius)</span><span class="s2">;</span>
+        <span class="s0">SPainter jill = </span><span class="s2">new </span><span class="s0">SPainter(</span><span class="s3">&quot;Canvas&quot;</span><span class="s2">, </span><span class="s4">1000</span><span class="s2">, </span><span class="s4">1000</span><span class="s0">)</span><span class="s2">;</span>
+        <span class="s0">Color chosenColor = JColorChooser.showDialog(</span><span class="s2">null, </span><span class="s3">&quot;Choose a Color&quot;</span><span class="s2">, </span><span class="s0">Color.BLUE)</span><span class="s2">;</span>
+        <span class="s0">jill.paintFrame(Color.BLACK</span><span class="s2">, </span><span class="s4">1000</span><span class="s0">)</span><span class="s2">;</span>
+        <span class="s0">jill.setColor(chosenColor)</span><span class="s2">;</span>
+        <span class="s0">jill.paint(dot)</span><span class="s2">;</span>
+    <span class="s0">}</span>
+
+    <span class="s1">//Required Infrastructure</span>
+    <span class="s2">public </span><span class="s0">Test2() {paintTheImage()</span><span class="s2">;</span><span class="s0">}</span>
+    <span class="s2">public static void </span><span class="s0">main(String[] args) {</span>
+        <span class="s0">SwingUtilities.invokeLater(</span><span class="s2">new </span><span class="s0">Runnable() {</span>
+            <span class="s0">@Override</span>
+            <span class="s2">public void </span><span class="s0">run() {</span><span class="s2">new </span><span class="s0">Test2()</span><span class="s2">;</span><span class="s0">}</span>
+        <span class="s0">})</span><span class="s2">;</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+<span class="s1">/* 
+ * Tester code 
+ * System.out.println(&quot;input --&gt; &quot; + input); 
+ * System.out.println(&quot;radius --&gt; &quot; + radius); 
+ */</span></pre>
+</body>
+</html>

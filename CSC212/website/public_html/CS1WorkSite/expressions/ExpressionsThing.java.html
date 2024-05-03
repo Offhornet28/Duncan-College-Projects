@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>ExpressionsThing.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #067d17;}
+.s4 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ExpressionsThing.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * This program allows for the exploration of the construction of the arithmetic expressions in the form of simple 
+ * problem-solving. 
+ */</span>
+<span class="s2">package </span><span class="s0">expressions</span><span class="s2">;</span>
+<span class="s2">import </span><span class="s0">java.lang.Math</span><span class="s2">;</span>
+
+<span class="s2">public class </span><span class="s0">ExpressionsThing {</span>
+    <span class="s2">public static void </span><span class="s0">main(String args[]) {</span>
+        <span class="s2">double </span><span class="s0">one = </span><span class="s3">3.14 </span><span class="s0">* </span><span class="s3">5 </span><span class="s0">+ </span><span class="s3">5</span><span class="s2">;</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;one = &quot; </span><span class="s0">+ one)</span><span class="s2">;</span>
+        <span class="s2">double </span><span class="s0">two = </span><span class="s3">3.14 </span><span class="s0">* (</span><span class="s3">5 </span><span class="s0">+ </span><span class="s3">5</span><span class="s0">)</span><span class="s2">;</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;two = &quot; </span><span class="s0">+ two)</span><span class="s2">;</span>
+        <span class="s2">double </span><span class="s0">three = (</span><span class="s3">3.14 </span><span class="s0">* (</span><span class="s3">5 </span><span class="s0">+ </span><span class="s3">5</span><span class="s0">))</span><span class="s2">;</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;three = &quot; </span><span class="s0">+ three)</span><span class="s2">;</span>
+        <span class="s2">int </span><span class="s0">four = (</span><span class="s3">5 </span><span class="s0">* </span><span class="s3">6</span><span class="s0">)</span><span class="s2">;</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;four = &quot; </span><span class="s0">+ four)</span><span class="s2">;</span>
+        <span class="s2">double </span><span class="s0">five = (</span><span class="s3">55.0 </span><span class="s0">/ </span><span class="s3">2.0</span><span class="s0">)</span><span class="s2">;</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;five = &quot; </span><span class="s0">+ five)</span><span class="s2">;</span>
+        <span class="s2">double </span><span class="s0">six = (</span><span class="s3">65.0 </span><span class="s0">* (</span><span class="s3">1.0</span><span class="s0">/</span><span class="s3">3.0</span><span class="s0">))</span><span class="s2">;</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;six = &quot; </span><span class="s0">+ six)</span><span class="s2">;</span>
+        <span class="s2">double </span><span class="s0">seven = (six + five)</span><span class="s2">;</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;seven = &quot; </span><span class="s0">+ seven)</span><span class="s2">;</span>
+        <span class="s1">//(PI * (R * R))</span>
+        <span class="s2">double </span><span class="s0">eight = (</span><span class="s3">3.14 </span><span class="s0">* (</span><span class="s3">11.3 </span><span class="s0">* </span><span class="s3">11.3</span><span class="s0">))</span><span class="s2">;</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;eight = &quot; </span><span class="s0">+ eight)</span><span class="s2">;</span>
+        <span class="s1">//(S * S)</span>
+        <span class="s2">double </span><span class="s0">nine = (</span><span class="s3">27.7 </span><span class="s0">* </span><span class="s3">27.7</span><span class="s0">)</span><span class="s2">;</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;nine = &quot; </span><span class="s0">+ nine)</span><span class="s2">;</span>
+        <span class="s2">double </span><span class="s0">ten = ((eight + nine) / </span><span class="s3">2.0</span><span class="s0">)</span><span class="s2">;</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;ten = &quot; </span><span class="s0">+ ten)</span><span class="s2">;</span>
+        <span class="s2">double </span><span class="s0">eleven = (</span><span class="s3">243.5 </span><span class="s0">* </span><span class="s3">0.17</span><span class="s0">)</span><span class="s2">;</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;eleven = &quot; </span><span class="s0">+ eleven)</span><span class="s2">;</span>
+        <span class="s1">//Source: 3,3  Goal: 1</span>
+        <span class="s2">int </span><span class="s0">twelve = (</span><span class="s3">3 </span><span class="s0">/ </span><span class="s3">3</span><span class="s0">)</span><span class="s2">;</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;twelve = &quot; </span><span class="s0">+ twelve)</span><span class="s2">;</span>
+        <span class="s1">//Source:  4,7,2  Goal: 1</span>
+        <span class="s2">int </span><span class="s0">thirteen = (</span><span class="s3">7 </span><span class="s0">- (</span><span class="s3">4 </span><span class="s0">+ </span><span class="s3">2</span><span class="s0">))</span><span class="s2">;</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;thirteen = &quot; </span><span class="s0">+ thirteen)</span><span class="s2">;</span>
+        <span class="s1">//Source: 1,3,7,9  Goal: 4</span>
+        <span class="s2">int </span><span class="s0">fourteen = ((</span><span class="s3">9 </span><span class="s0">- </span><span class="s3">7</span><span class="s0">) + (</span><span class="s3">3 </span><span class="s0">- </span><span class="s3">1</span><span class="s0">))</span><span class="s2">;</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;fourteen = &quot; </span><span class="s0">+ fourteen)</span><span class="s2">;</span>
+        <span class="s1">//Source 2,2,4,6,8  Goal: 5</span>
+        <span class="s2">int </span><span class="s0">fifteen = (((</span><span class="s3">8 </span><span class="s0">* </span><span class="s3">2</span><span class="s0">) - (</span><span class="s3">6 </span><span class="s0">* </span><span class="s3">2</span><span class="s0">)) + (</span><span class="s3">2 </span><span class="s0">/ </span><span class="s3">2</span><span class="s0">))</span><span class="s2">;</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;fifteen = &quot; </span><span class="s0">+ fifteen)</span><span class="s2">;</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>

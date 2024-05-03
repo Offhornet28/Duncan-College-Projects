@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>StringOps.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #067d17;}
+.s4 { color: #0037a6;}
+.s5 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+StringOps.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * Program to illustrate some basic character string processing functionality 
+ */</span>
+
+<span class="s2">package </span><span class="s0">stringthing;</span>
+
+<span class="s2">public class </span><span class="s0">StringOps {</span>
+    <span class="s2">public static void </span><span class="s0">main(String[] args) {</span>
+        <span class="s1">//Establish some Strings</span>
+        <span class="s0">String date = </span><span class="s3">&quot;Wednesday, October 5, 2022&quot;</span><span class="s0">;</span>
+        <span class="s0">String time = </span><span class="s3">&quot;11:30 AM&quot;</span><span class="s0">;</span>
+        <span class="s0">String lab = </span><span class="s3">&quot;String Thing&quot;</span><span class="s0">;</span>
+        <span class="s1">//Compute the lengths of the Strings</span>
+        <span class="s2">int </span><span class="s0">dateLength = date.length();</span>
+        <span class="s2">int </span><span class="s0">timeLength = time.length();</span>
+        <span class="s2">int </span><span class="s0">labLength = lab.length();</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;</span><span class="s4">\n</span><span class="s3">dateLength = &quot; </span><span class="s0">+ dateLength);</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;timeLength = &quot; </span><span class="s0">+ timeLength);</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;labLength = &quot; </span><span class="s0">+ labLength);</span>
+        <span class="s1">//Compute some positions</span>
+        <span class="s2">int </span><span class="s0">p1 = date.indexOf(</span><span class="s3">&quot;,&quot;</span><span class="s0">);</span>
+        <span class="s2">int </span><span class="s0">p2 = time.indexOf(</span><span class="s3">&quot; &quot;</span><span class="s0">);</span>
+        <span class="s2">int </span><span class="s0">p3 = lab.indexOf(</span><span class="s3">&quot;ing&quot;</span><span class="s0">);</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;</span><span class="s4">\n</span><span class="s3">p1 = &quot; </span><span class="s0">+ p1);</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;p2 = &quot; </span><span class="s0">+ p2);</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;p3 = &quot; </span><span class="s0">+ p3);</span>
+        <span class="s1">//Compute some 2 argument Substring values</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;</span><span class="s4">\n</span><span class="s3">date.substring(0,9) = &quot; </span><span class="s0">+ date.substring(</span><span class="s5">0</span><span class="s0">,</span><span class="s5">9</span><span class="s0">));</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;time.substring(2,4) = &quot; </span><span class="s0">+ time.substring(</span><span class="s5">2</span><span class="s0">,</span><span class="s5">4</span><span class="s0">));</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;lab.substring(7,8) = &quot; </span><span class="s0">+ lab.substring(</span><span class="s5">7</span><span class="s0">,</span><span class="s5">8</span><span class="s0">));</span>
+        <span class="s1">//Compute some 1 argument Substring values</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;</span><span class="s4">\n</span><span class="s3">date.substring(11) = &quot; </span><span class="s0">+ date.substring(</span><span class="s5">11</span><span class="s0">));</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;time.substring(2) = &quot; </span><span class="s0">+ time.substring(</span><span class="s5">2</span><span class="s0">));</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;lab.substring(7) = &quot; </span><span class="s0">+ lab.substring(</span><span class="s5">7</span><span class="s0">));</span>
+        <span class="s1">//Create a String</span>
+        <span class="s0">String line = date + </span><span class="s3">&quot; | &quot; </span><span class="s0">+ time + </span><span class="s3">&quot; | &quot; </span><span class="s0">+ lab;</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;</span><span class="s4">\n</span><span class="s3">line = &quot; </span><span class="s0">+ line);</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>

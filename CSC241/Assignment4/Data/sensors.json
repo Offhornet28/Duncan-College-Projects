@@ -1,0 +1,392 @@
+{
+  "Owner": "Stephen Jobs",
+  "Location": "Shineman Center 398, Oswego, NY 13126",
+  "Phone": "315-312-2500",
+  "Number of Sensors": 48,
+  "Sensors": [
+    {
+      "ID": "s01",
+      "Type": "motion",
+      "Object": "wall",
+      "Location": "bedroom1",
+      "Default Status": 0.0,
+      "Status": 5.3
+    },
+    {
+      "ID": "s02",
+      "Type": "light",
+      "Object": "light",
+      "Location": "bedroom1",
+      "Default Status": 0.0,
+      "Status": 2.2
+    },
+    {
+      "ID": "s03",
+      "Type": "pressure",
+      "Object": "bed",
+      "Location": "bedroom1",
+      "Default Status": 0.0,
+      "Status": 0.1
+    },
+    {
+      "ID": "s04",
+      "Type": "contact",
+      "Object": "door",
+      "Location": "bedroom1",
+      "Default Status": 0.0,
+      "Status": 4.0
+    },
+    {
+      "ID": "s05",
+      "Type": "temperature",
+      "Object": "wall",
+      "Location": "bedroom1",
+      "Default Status": 50.0,
+      "Status": 71.1
+    },
+    {
+      "ID": "s06",
+      "Type": "light",
+      "Object": "light",
+      "Location": "bathroom1",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s07",
+      "Type": "contact",
+      "Object": "toilet",
+      "Location": "bathroom1",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s08",
+      "Type": "contact",
+      "Object": "bathtub",
+      "Location": "bathroom1",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s09",
+      "Type": "contact",
+      "Object": "sink",
+      "Location": "bathroom1",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s10",
+      "Type": "contact",
+      "Object": "door",
+      "Location": "bathroom1",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s11",
+      "Type": "motion",
+      "Object": "wall",
+      "Location": "livingroom",
+      "Default Status": 0.0,
+      "Status": 0.1
+    },
+    {
+      "ID": "s12",
+      "Type": "light",
+      "Object": "light",
+      "Location": "livingroom",
+      "Default Status": 0.0,
+      "Status": 0.1
+    },
+    {
+      "ID": "s13",
+      "Type": "pressure",
+      "Object": "sofa",
+      "Location": "livingroom",
+      "Default Status": 0.0,
+      "Status": 0.1
+    },
+    {
+      "ID": "s14",
+      "Type": "pressure",
+      "Object": "table",
+      "Location": "livingroom",
+      "Default Status": 0.0,
+      "Status": 0.1
+    },
+    {
+      "ID": "s15",
+      "Type": "pressure",
+      "Object": "tv",
+      "Location": "livingroom",
+      "Default Status": 0.0,
+      "Status": 0.1
+    },
+    {
+      "ID": "s16",
+      "Type": "temperature",
+      "Object": "wall",
+      "Location": "livingroom",
+      "Default Status": 50.0,
+      "Status": 70.8
+    },
+    {
+      "ID": "s17",
+      "Type": "door",
+      "Object": "front-door",
+      "Location": "livingroom",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s18",
+      "Type": "light",
+      "Object": "light",
+      "Location": "livingroom",
+      "Default Status": 0.0,
+      "Status": 0.1
+    },
+    {
+      "ID": "s19",
+      "Type": "contact",
+      "Object": "cabinet",
+      "Location": "livingroom",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s20",
+      "Type": "pressure",
+      "Object": "floor",
+      "Location": "livingroom",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s21",
+      "Type": "motion",
+      "Object": "wall",
+      "Location": "bedroom2",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s22",
+      "Type": "light",
+      "Object": "light",
+      "Location": "bedroom2",
+      "Default Status": 0.0,
+      "Status": 0.2
+    },
+    {
+      "ID": "s23",
+      "Type": "pressure",
+      "Object": "bed",
+      "Location": "bedroom2",
+      "Default Status": 0.0,
+      "Status": 0.1
+    },
+    {
+      "ID": "s24",
+      "Type": "contact",
+      "Object": "door",
+      "Location": "bedroom2",
+      "Default Status": 0.0,
+      "Status": 4.0
+    },
+    {
+      "ID": "s25",
+      "Type": "temperature",
+      "Object": "wall",
+      "Location": "bedroom2",
+      "Default Status": 50.0,
+      "Status": 71.1
+    },
+    {
+      "ID": "s26",
+      "Type": "light",
+      "Object": "light",
+      "Location": "bathroom2",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s27",
+      "Type": "contact",
+      "Object": "toilet",
+      "Location": "bathroom2",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s28",
+      "Type": "contact",
+      "Object": "bathtub",
+      "Location": "bathroom2",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s29",
+      "Type": "contact",
+      "Object": "sink",
+      "Location": "bathroom2",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s30",
+      "Type": "contact",
+      "Object": "door",
+      "Location": "bathroom2",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s31",
+      "Type": "light",
+      "Object": "light",
+      "Location": "kitchen",
+      "Default Status": 0.0,
+      "Status": 0.2
+    },
+    {
+      "ID": "s32",
+      "Type": "temperature",
+      "Object": "wall",
+      "Location": "kitchen",
+      "Default Status": 50.0,
+      "Status": 69.5
+    },
+    {
+      "ID": "s33",
+      "Type": "contact",
+      "Object": "refrigerator",
+      "Location": "kitchen",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s34",
+      "Type": "contact",
+      "Object": "electric-stove",
+      "Location": "kitchen",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s35",
+      "Type": "contact",
+      "Object": "microwave",
+      "Location": "kitchen",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s36",
+      "Type": "contact",
+      "Object": "sink",
+      "Location": "kitchen",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s37",
+      "Type": "contact",
+      "Object": "toaster",
+      "Location": "kitchen",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s38",
+      "Type": "contact",
+      "Object": "dishwasher",
+      "Location": "kitchen",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s39",
+      "Type": "contact",
+      "Object": "cabinet",
+      "Location": "kitchen",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s40",
+      "Type": "contact",
+      "Object": "ceiling-fan",
+      "Location": "kitchen",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s41",
+      "Type": "light",
+      "Object": "light",
+      "Location": "diningroom",
+      "Default Status": 0.0,
+      "Status": 0.2
+    },
+    {
+      "ID": "s42",
+      "Type": "motion",
+      "Object": "wall",
+      "Location": "diningroom",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s43",
+      "Type": "contact",
+      "Object": "dining-table",
+      "Location": "diningroom",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s44",
+      "Type": "contact",
+      "Object": "chair1",
+      "Location": "diningroom",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s45",
+      "Type": "contact",
+      "Object": "chair2",
+      "Location": "diningroom",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s46",
+      "Type": "contact",
+      "Object": "chair3",
+      "Location": "diningroom",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s47",
+      "Type": "contact",
+      "Object": "chair4",
+      "Location": "diningroom",
+      "Default Status": 0.0,
+      "Status": 0.0
+    },
+    {
+      "ID": "s48",
+      "Type": "contact",
+      "Object": "cabinet",
+      "Location": "diningroom",
+      "Default Status": 0.0,
+      "Status": 0.0
+    }
+  ]
+}

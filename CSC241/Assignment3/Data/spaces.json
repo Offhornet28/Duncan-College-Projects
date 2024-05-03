@@ -1,0 +1,73 @@
+{
+  "Owner": "Stephen Jobs",
+  "Location": "Shineman Center 398, Oswego, NY 13126",
+  "Phone": "315-312-2500",
+  "Number of Rooms": 7,
+  "Rooms": [
+    {
+      "Name": "bedroom1",
+      "Number of Sensors": 5,
+      "Sensors": [
+        {
+          "ID": "s01"
+        },
+        {
+          "ID": "s02"
+        },
+        {
+          "ID": "s03"
+        },
+        {
+          "ID": "s04"
+        },
+        {
+          "ID": "s05"
+        }
+      ]
+    },
+    {
+      "Name": "bedroom2",
+      "Number of Sensors": 0
+    },
+    {
+      "Name": "bathroom1",
+      "Number of Sensors": 0
+    },
+    {
+      "Name": "bathroom2",
+      "Number of Sensors": 0
+    },
+    {
+      "Name": "livingroom",
+      "Number of Sensors": 6,
+      "Sensors": [
+        {
+          "ID": "s11"
+        },
+        {
+          "ID": "s12"
+        },
+        {
+          "ID": "s13"
+        },
+        {
+          "ID": "s14"
+        },
+        {
+          "ID": "s15"
+        },
+        {
+          "ID": "s16"
+        }
+      ]
+    },
+    {
+      "Name": "kitchen",
+      "Number of Sensors": 0
+    },
+    {
+      "Name": "diningroom",
+      "Number of Sensors": 0
+    }
+  ]
+}

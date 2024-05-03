@@ -1,0 +1,154 @@
+<html>
+<head>
+<title>Dots.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #067d17;}
+.s4 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Dots.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * Dots program challenge with a key thing being that the image stays the same 
+ * even if you change the circle size or canvas (hopefully). 
+ */</span>
+
+<span class="s2">package </span><span class="s0">npw;</span>
+<span class="s2">import </span><span class="s0">java.awt.Color;</span>
+<span class="s2">import </span><span class="s0">javax.swing.SwingUtilities;</span>
+<span class="s2">import </span><span class="s0">painter.SPainter;</span>
+<span class="s2">import </span><span class="s0">shapes.SCircle;</span>
+<span class="s2">import </span><span class="s0">shapes.SRectangle;</span>
+
+<span class="s2">public class </span><span class="s0">Dots {</span>
+
+    <span class="s1">//Draw Code</span>
+    <span class="s2">private void </span><span class="s0">paintTheImage() {</span>
+        <span class="s0">SPainter jill = </span><span class="s2">new </span><span class="s0">SPainter(</span><span class="s3">&quot;Dots&quot;</span><span class="s0">,</span><span class="s4">1200</span><span class="s0">,</span><span class="s4">600</span><span class="s0">);</span>
+        <span class="s0">SCircle dot = </span><span class="s2">new </span><span class="s0">SCircle(</span><span class="s4">50.0</span><span class="s0">);</span>
+        <span class="s0">setupCanvas(jill);</span>
+        <span class="s0">paintCenterDot(jill, dot);</span>
+        <span class="s0">paintInnerDotColumns(jill, dot);</span>
+        <span class="s0">paintOuterDotColumns(jill, dot);</span>
+        <span class="s0">paintDotEnds(jill, dot);</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private void </span><span class="s0">setupCanvas(SPainter jill) {</span>
+        <span class="s0">SRectangle rectangle = </span><span class="s2">new </span><span class="s0">SRectangle(jill.canvasHeight() * </span><span class="s4">1.0</span><span class="s0">, jill.canvasWidth() * (</span><span class="s4">1.0</span><span class="s0">/</span><span class="s4">2.0</span><span class="s0">));</span>
+        <span class="s0">jill.setColor(Color.BLACK);</span>
+        <span class="s0">jill.mlt(jill.canvasWidth() / </span><span class="s4">4.0</span><span class="s0">);</span>
+        <span class="s0">jill.paint(rectangle);</span>
+        <span class="s0">jill.moveToCenter();</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private void </span><span class="s0">paintCenterDot(SPainter jill, SCircle dot) {</span>
+        <span class="s0">jill.setColor(Color.GREEN);</span>
+        <span class="s1">//set radius to 45</span>
+        <span class="s0">dot.shrink(dot.radius() / </span><span class="s4">10.0</span><span class="s0">);</span>
+        <span class="s0">jill.paint(dot);</span>
+        <span class="s1">//reset circle</span>
+        <span class="s0">dot.expand(dot.radius() / </span><span class="s4">9.0</span><span class="s0">);</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private void </span><span class="s0">paintInnerDotColumns(SPainter jill, SCircle dot) {</span>
+        <span class="s1">//left side</span>
+        <span class="s0">jill.setColor(Color.RED);</span>
+        <span class="s0">jill.mlt(dot.diameter() + (dot.radius() / </span><span class="s4">2.0</span><span class="s0">));</span>
+        <span class="s1">//set its radius to 60</span>
+        <span class="s0">dot.expand(dot.radius() / </span><span class="s4">5.0</span><span class="s0">);</span>
+        <span class="s0">jill.mfd(((jill.canvasHeight() / </span><span class="s4">2.0</span><span class="s0">) - </span><span class="s4">60.0</span><span class="s0">) - dot.radius());</span>
+        <span class="s0">jill.paint(dot);</span>
+        <span class="s0">jill.mbk((jill.canvasHeight() - </span><span class="s4">120.0</span><span class="s0">) - dot.diameter());</span>
+        <span class="s0">jill.paint(dot);</span>
+        <span class="s1">//reset painter and circle</span>
+        <span class="s0">dot.shrink(dot.radius() / </span><span class="s4">6.0</span><span class="s0">); jill.moveToCenter();</span>
+
+        <span class="s1">//right side</span>
+        <span class="s0">jill.setColor(Color.BLUE);</span>
+        <span class="s0">jill.mrt(dot.diameter() + (dot.radius() / </span><span class="s4">2.0</span><span class="s0">));</span>
+        <span class="s1">//set its radius to 60</span>
+        <span class="s0">dot.expand(dot.radius() / </span><span class="s4">5.0</span><span class="s0">);</span>
+        <span class="s0">jill.mbk(((jill.canvasHeight() / </span><span class="s4">2.0</span><span class="s0">) - </span><span class="s4">60.0</span><span class="s0">) - dot.radius());</span>
+        <span class="s0">jill.paint(dot);</span>
+        <span class="s0">jill.mfd((jill.canvasHeight() - </span><span class="s4">120.0</span><span class="s0">) - dot.diameter());</span>
+        <span class="s0">jill.paint(dot);</span>
+        <span class="s1">//reset painter and circle</span>
+        <span class="s0">dot.shrink(dot.radius() / </span><span class="s4">6.0</span><span class="s0">); jill.moveToCenter();</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private void </span><span class="s0">paintOuterDotColumns(SPainter jill, SCircle dot) {</span>
+        <span class="s1">//left side</span>
+        <span class="s0">jill.setColor(Color.RED);</span>
+        <span class="s0">jill.mlt((dot.diameter() * </span><span class="s4">3.0</span><span class="s0">) + (dot.radius() / </span><span class="s4">2.0</span><span class="s0">));</span>
+        <span class="s1">//radius is 50</span>
+        <span class="s0">jill.mfd(((jill.canvasHeight() / </span><span class="s4">2.0</span><span class="s0">) - </span><span class="s4">120.0</span><span class="s0">) - dot.radius());</span>
+        <span class="s0">jill.paint(dot);</span>
+        <span class="s0">jill.mbk((jill.canvasHeight() - </span><span class="s4">240.0</span><span class="s0">) - dot.diameter());</span>
+        <span class="s0">jill.paint(dot);</span>
+        <span class="s1">//reset painter</span>
+        <span class="s0">jill.moveToCenter();</span>
+
+        <span class="s1">//right side</span>
+        <span class="s0">jill.setColor(Color.BLUE);</span>
+        <span class="s0">jill.mrt((dot.diameter() * </span><span class="s4">3.0</span><span class="s0">) + (dot.radius() / </span><span class="s4">2.0</span><span class="s0">));</span>
+        <span class="s1">//radius is 50</span>
+        <span class="s0">jill.mbk(((jill.canvasHeight() / </span><span class="s4">2.0</span><span class="s0">) - </span><span class="s4">120.0</span><span class="s0">) - dot.radius());</span>
+        <span class="s0">jill.paint(dot);</span>
+        <span class="s0">jill.mfd((jill.canvasHeight() - </span><span class="s4">240.0</span><span class="s0">) - dot.diameter());</span>
+        <span class="s0">jill.paint(dot);</span>
+        <span class="s1">//reset painter and circle</span>
+        <span class="s0">jill.moveToCenter();</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private void </span><span class="s0">paintDotEnds(SPainter jill, SCircle dot) {</span>
+        <span class="s1">//color</span>
+        <span class="s0">jill.setColor(Color.GREEN);</span>
+        <span class="s1">//left side</span>
+        <span class="s0">jill.mlt((dot.diameter() * </span><span class="s4">4.0</span><span class="s0">) + (dot.radius() / </span><span class="s4">2.0</span><span class="s0">));</span>
+        <span class="s1">//set its radius to 40</span>
+        <span class="s0">dot.shrink(dot.radius() / </span><span class="s4">5.0</span><span class="s0">);</span>
+        <span class="s0">jill.paint(dot);</span>
+        <span class="s1">//rest painter and circle</span>
+        <span class="s0">dot.expand(dot.radius() / </span><span class="s4">4.0</span><span class="s0">); jill.moveToCenter();</span>
+
+        <span class="s1">//right side</span>
+        <span class="s0">jill.mrt((dot.diameter() * </span><span class="s4">4.0</span><span class="s0">) + (dot.radius() / </span><span class="s4">2.0</span><span class="s0">));</span>
+        <span class="s1">//set its radius to 40</span>
+        <span class="s0">dot.shrink(dot.radius() / </span><span class="s4">5.0</span><span class="s0">);</span>
+        <span class="s0">jill.paint(dot);</span>
+        <span class="s1">//reset painter and circle</span>
+        <span class="s0">dot.expand(dot.radius() / </span><span class="s4">4.0</span><span class="s0">); jill.moveToCenter();</span>
+    <span class="s0">}</span>
+
+    <span class="s1">//Infrastructure</span>
+    <span class="s2">public </span><span class="s0">Dots() {</span>
+        <span class="s0">paintTheImage();</span>
+    <span class="s0">}</span>
+    <span class="s2">public static void </span><span class="s0">main(String[] arg) {</span>
+        <span class="s0">SwingUtilities.invokeLater(</span><span class="s2">new </span><span class="s0">Runnable() {</span>
+            <span class="s0">@Override</span>
+            <span class="s2">public void </span><span class="s0">run() {</span><span class="s2">new </span><span class="s0">Dots();}</span>
+        <span class="s0">});</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+
+<span class="s1">/* 
+ *Things needed: 
+ * 1) 11 painted circles 
+ * 2) There has to be exactly 4 different sizes of circles 
+ * 3) There has to be exactly 3 different colors of circles 
+ * 4) None of the circles can touch 
+ * 5) The image has to be symmetric around the y-axis 
+ * 6) Not all of the circles can touch the y-axis 
+ */</span></pre>
+</body>
+</html>

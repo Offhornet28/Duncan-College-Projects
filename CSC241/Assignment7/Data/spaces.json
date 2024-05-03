@@ -1,0 +1,194 @@
+{
+  "Owner": "Stephen Jobs",
+  "Location": "Shineman Center 398, Oswego, NY 13126",
+  "Phone": "315-312-2500",
+  "Number of Rooms": 7,
+  "Rooms": [
+    {
+      "Name": "bedroom1",
+      "Number of Sensors": 5,
+      "Sensors": [
+        {
+          "ID": "s01"
+        },
+        {
+          "ID": "s02"
+        },
+        {
+          "ID": "s03"
+        },
+        {
+          "ID": "s04"
+        },
+        {
+          "ID": "s05"
+        }
+      ]
+    },
+    {
+      "Name": "bedroom2",
+      "Number of Sensors": 5,
+      "Sensors": [
+        {
+          "ID": "s11"
+        },
+        {
+          "ID": "s12"
+        },
+        {
+          "ID": "s13"
+        },
+        {
+          "ID": "s14"
+        },
+        {
+          "ID": "s15"
+        }
+      ]
+    },
+    {
+      "Name": "bathroom1",
+      "Number of Sensors": 5,
+      "Sensors": [
+        {
+          "ID": "s06"
+        },
+        {
+          "ID": "s07"
+        },
+        {
+          "ID": "s08"
+        },
+        {
+          "ID": "s09"
+        },
+        {
+          "ID": "s10"
+        }
+      ]
+    },
+    {
+      "Name": "bathroom2",
+      "Number of Sensors": 5,
+      "Sensors": [
+        {
+          "ID": "s26"
+        },
+        {
+          "ID": "s27"
+        },
+        {
+          "ID": "s28"
+        },
+        {
+          "ID": "s29"
+        },
+        {
+          "ID": "s30"
+        }
+      ]
+    },
+    {
+      "Name": "livingroom",
+      "Number of Sensors": 10,
+      "Sensors": [
+        {
+          "ID": "s11"
+        },
+        {
+          "ID": "s12"
+        },
+        {
+          "ID": "s13"
+        },
+        {
+          "ID": "s14"
+        },
+        {
+          "ID": "s15"
+        },
+        {
+          "ID": "s16"
+        },
+        {
+          "ID": "s17"
+        },
+        {
+          "ID": "s18"
+        },
+        {
+          "ID": "s19"
+        },
+        {
+          "ID": "s20"
+        }
+      ]
+    },
+    {
+      "Name": "kitchen",
+      "Number of Sensors": 10,
+      "Sensors": [
+        {
+          "ID": "s31"
+        },
+        {
+          "ID": "s32"
+        },
+        {
+          "ID": "s33"
+        },
+        {
+          "ID": "s34"
+        },
+        {
+          "ID": "s35"
+        },
+        {
+          "ID": "s36"
+        },
+        {
+          "ID": "s37"
+        },
+        {
+          "ID": "s38"
+        },
+        {
+          "ID": "s39"
+        },
+        {
+          "ID": "s40"
+        }
+      ]
+    },
+    {
+      "Name": "diningroom",
+      "Number of Sensors": 8,
+      "Sensors": [
+        {
+          "ID": "s41"
+        },
+        {
+          "ID": "s42"
+        },
+        {
+          "ID": "s43"
+        },
+        {
+          "ID": "s44"
+        },
+        {
+          "ID": "s45"
+        },
+        {
+          "ID": "s46"
+        },
+        {
+          "ID": "s47"
+        },
+        {
+          "ID": "s48"
+        }
+      ]
+    }
+  ]
+}

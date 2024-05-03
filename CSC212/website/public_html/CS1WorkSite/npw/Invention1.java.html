@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>Invention1.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #067d17;}
+.s4 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Invention1.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * Programming Challenge 4 Problem 6 Program 
+ */</span>
+
+<span class="s2">package </span><span class="s0">npw;</span>
+<span class="s2">import </span><span class="s0">java.awt.Color;</span>
+<span class="s2">import </span><span class="s0">javax.swing.SwingUtilities;</span>
+<span class="s2">import </span><span class="s0">painter.SPainter;</span>
+<span class="s2">import </span><span class="s0">shapes.SCircle;</span>
+<span class="s2">import </span><span class="s0">shapes.SSquare;</span>
+
+<span class="s2">public class </span><span class="s0">Invention1 {</span>
+
+    <span class="s1">//Draw Code</span>
+    <span class="s2">private void </span><span class="s0">paintTheImage() {</span>
+        <span class="s0">SPainter jill = </span><span class="s2">new </span><span class="s0">SPainter(</span><span class="s3">&quot;Invention1&quot;</span><span class="s0">, </span><span class="s4">1000</span><span class="s0">, </span><span class="s4">1000</span><span class="s0">);</span>
+        <span class="s0">SCircle circle = </span><span class="s2">new </span><span class="s0">SCircle(</span><span class="s4">300</span><span class="s0">);</span>
+        <span class="s0">SSquare square = </span><span class="s2">new </span><span class="s0">SSquare(</span><span class="s4">50</span><span class="s0">);</span>
+        <span class="s0">paintCircles(jill, circle);</span>
+        <span class="s0">paintSquares(jill, circle, square, </span><span class="s4">5</span><span class="s0">);</span>
+        <span class="s0">circle.setRadius(</span><span class="s4">200</span><span class="s0">);</span>
+        <span class="s0">paintSquares(jill, circle, square, </span><span class="s4">10</span><span class="s0">);</span>
+        <span class="s0">circle.setRadius(</span><span class="s4">100</span><span class="s0">);</span>
+        <span class="s0">paintSquares(jill, circle, square, </span><span class="s4">20</span><span class="s0">);</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private void </span><span class="s0">paintSquares(SPainter jill, SCircle circle, SSquare square, </span><span class="s2">int </span><span class="s0">spacing) {</span>
+        <span class="s0">Color color1 = </span><span class="s2">new </span><span class="s0">Color(</span><span class="s4">0</span><span class="s0">,</span><span class="s4">150</span><span class="s0">,</span><span class="s4">255</span><span class="s0">);</span>
+        <span class="s0">Color color2 = </span><span class="s2">new </span><span class="s0">Color(</span><span class="s4">0</span><span class="s0">,</span><span class="s4">150</span><span class="s0">,</span><span class="s4">125</span><span class="s0">);</span>
+        <span class="s2">int </span><span class="s0">h = </span><span class="s4">0</span><span class="s0">;</span>
+        <span class="s2">int </span><span class="s0">i = </span><span class="s4">2</span><span class="s0">;</span>
+        <span class="s2">while</span><span class="s0">(h &lt; </span><span class="s4">360</span><span class="s0">) {</span>
+            <span class="s2">int </span><span class="s0">n = i % </span><span class="s4">2</span><span class="s0">;</span>
+            <span class="s2">if </span><span class="s0">(n == </span><span class="s4">0</span><span class="s0">) {</span>
+                <span class="s0">jill.setColor(color1);</span>
+            <span class="s0">} </span><span class="s2">else </span><span class="s0">{</span>
+                <span class="s0">jill.setColor(color2);</span>
+            <span class="s0">}</span>
+            <span class="s0">jill.setHeading(h);</span>
+            <span class="s0">jill.mfd(circle.radius());</span>
+            <span class="s0">jill.setHeading(h + </span><span class="s4">45</span><span class="s0">);</span>
+            <span class="s0">jill.paint(square);</span>
+            <span class="s0">jill.setColor(Color.BLACK);</span>
+            <span class="s0">jill.setBrushWidth(</span><span class="s4">3</span><span class="s0">);</span>
+            <span class="s0">jill.draw(square);</span>
+            <span class="s0">jill.setBrushWidth(</span><span class="s4">1</span><span class="s0">);</span>
+            <span class="s0">jill.setHeading(</span><span class="s4">0</span><span class="s0">);</span>
+            <span class="s0">jill.moveToCenter();</span>
+            <span class="s0">++i;</span>
+            <span class="s0">h = h + spacing;</span>
+        <span class="s0">}</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private void </span><span class="s0">paintCircles(SPainter jill, SCircle circle) {</span>
+        <span class="s2">int </span><span class="s0">temp = (</span><span class="s2">int</span><span class="s0">)circle.radius();</span>
+
+        <span class="s0">jill.setColor(</span><span class="s2">new </span><span class="s0">Color(</span><span class="s4">0</span><span class="s0">,</span><span class="s4">250</span><span class="s0">,</span><span class="s4">125</span><span class="s0">));</span>
+        <span class="s0">paintOneCircle(jill, circle);</span>
+
+        <span class="s0">circle.setRadius((</span><span class="s2">int</span><span class="s0">)circle.radius() - </span><span class="s4">100</span><span class="s0">);</span>
+        <span class="s0">jill.setColor(</span><span class="s2">new </span><span class="s0">Color(</span><span class="s4">0</span><span class="s0">,</span><span class="s4">250</span><span class="s0">,</span><span class="s4">225</span><span class="s0">));</span>
+        <span class="s0">paintOneCircle(jill,circle);</span>
+
+        <span class="s0">circle.setRadius((</span><span class="s2">int</span><span class="s0">)circle.radius() - </span><span class="s4">100</span><span class="s0">);</span>
+        <span class="s0">jill.setColor(</span><span class="s2">new </span><span class="s0">Color(</span><span class="s4">0</span><span class="s0">,</span><span class="s4">0</span><span class="s0">,</span><span class="s4">255</span><span class="s0">));</span>
+        <span class="s0">paintOneCircle(jill, circle);</span>
+
+        <span class="s0">circle.setRadius(temp);</span>
+    <span class="s0">}</span>
+    <span class="s2">private void </span><span class="s0">paintOneCircle(SPainter jill, SCircle circle) {</span>
+        <span class="s0">jill.paint(circle);</span>
+        <span class="s0">jill.setColor(Color.BLACK);</span>
+        <span class="s0">jill.setBrushWidth(</span><span class="s4">3</span><span class="s0">);</span>
+        <span class="s0">jill.draw(circle);</span>
+        <span class="s0">jill.setBrushWidth(</span><span class="s4">1</span><span class="s0">);</span>
+    <span class="s0">}</span>
+
+    <span class="s1">//Required Infrastructure</span>
+    <span class="s2">public </span><span class="s0">Invention1() {paintTheImage();}</span>
+    <span class="s2">public static void </span><span class="s0">main(String[] args) {</span>
+        <span class="s0">SwingUtilities.invokeLater(</span><span class="s2">new </span><span class="s0">Runnable() {</span>
+            <span class="s0">@Override</span>
+            <span class="s2">public void </span><span class="s0">run() {</span><span class="s2">new </span><span class="s0">Invention1();}</span>
+        <span class="s0">});</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+
+</pre>
+</body>
+</html>

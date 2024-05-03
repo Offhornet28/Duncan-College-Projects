@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>PersonDemo1.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #067d17;}
+.s4 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+PersonDemo1.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * PersonDemo1 is a simple program to create and textually display Person objects. 
+ */</span>
+
+<span class="s2">package </span><span class="s0">people;</span>
+
+<span class="s2">public class </span><span class="s0">PersonDemo1 {</span>
+    <span class="s2">public static void </span><span class="s0">main(String[] args) {</span>
+        <span class="s1">//Create six person objects</span>
+        <span class="s0">Person bd = </span><span class="s2">new </span><span class="s0">Person(</span><span class="s3">&quot;Bob Dylan&quot;</span><span class="s0">, </span><span class="s4">5</span><span class="s0">, </span><span class="s4">24</span><span class="s0">, </span><span class="s4">1941</span><span class="s0">);</span>
+        <span class="s0">Person nr = </span><span class="s2">new </span><span class="s0">Person(</span><span class="s3">&quot;Noomi Rapace&quot;</span><span class="s0">, </span><span class="s4">12</span><span class="s0">, </span><span class="s4">28</span><span class="s0">, </span><span class="s4">1974</span><span class="s0">);</span>
+        <span class="s0">Person pw = </span><span class="s2">new </span><span class="s0">Person(</span><span class="s3">&quot;Pharrell Williams&quot;</span><span class="s0">, </span><span class="s4">4</span><span class="s0">, </span><span class="s4">5</span><span class="s0">, </span><span class="s4">1973</span><span class="s0">);</span>
+        <span class="s0">Person fs = </span><span class="s2">new </span><span class="s0">Person(</span><span class="s3">&quot;Frank Sinatra&quot;</span><span class="s0">, </span><span class="s4">12</span><span class="s0">, </span><span class="s4">12</span><span class="s0">, </span><span class="s4">1915</span><span class="s0">);</span>
+        <span class="s0">Person dk = </span><span class="s2">new </span><span class="s0">Person(</span><span class="s3">&quot;Diana Krall&quot;</span><span class="s0">, </span><span class="s4">11</span><span class="s0">, </span><span class="s4">16</span><span class="s0">, </span><span class="s4">1964</span><span class="s0">);</span>
+        <span class="s0">Person dz = </span><span class="s2">new </span><span class="s0">Person(</span><span class="s3">&quot;Duncan Zaug&quot;</span><span class="s0">, </span><span class="s4">6</span><span class="s0">, </span><span class="s4">19</span><span class="s0">, </span><span class="s4">2004</span><span class="s0">);</span>
+        <span class="s1">//Display six person objects</span>
+        <span class="s0">System.out.println(bd + </span><span class="s3">&quot; &quot; </span><span class="s0">+ bd.initials() + </span><span class="s3">&quot; &quot; </span><span class="s0">+ bd.isBoomer());</span>
+        <span class="s0">System.out.println(nr + </span><span class="s3">&quot; &quot; </span><span class="s0">+ nr.initials() + </span><span class="s3">&quot; &quot; </span><span class="s0">+ nr.isBoomer());</span>
+        <span class="s0">System.out.println(pw + </span><span class="s3">&quot; &quot; </span><span class="s0">+ pw.initials() + </span><span class="s3">&quot; &quot; </span><span class="s0">+ pw.isBoomer());</span>
+        <span class="s0">System.out.println(fs + </span><span class="s3">&quot; &quot; </span><span class="s0">+ fs.initials() + </span><span class="s3">&quot; &quot; </span><span class="s0">+ fs.isBoomer());</span>
+        <span class="s0">System.out.println(dk + </span><span class="s3">&quot; &quot; </span><span class="s0">+ dk.initials() + </span><span class="s3">&quot; &quot; </span><span class="s0">+ dk.isBoomer());</span>
+        <span class="s0">System.out.println(dz + </span><span class="s3">&quot; &quot; </span><span class="s0">+ dz.initials() + </span><span class="s3">&quot; &quot; </span><span class="s0">+ dz.isBoomer());</span>
+
+    <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>

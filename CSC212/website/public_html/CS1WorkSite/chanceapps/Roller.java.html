@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>Roller.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #1750eb;}
+.s4 { color: #067d17;}
+.s5 { color: #0037a6;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Roller.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * Program to make use of the Die class 
+ */</span>
+
+<span class="s2">package </span><span class="s0">chanceapps;</span>
+<span class="s2">import </span><span class="s0">chance.Die;</span>
+
+<span class="s2">public class </span><span class="s0">Roller {</span>
+    <span class="s2">public static void </span><span class="s0">main(String[] args) {</span>
+        <span class="s1">//Create a standard die and roll 5 times</span>
+        <span class="s0">createAndRollStandardDieFiveTimes();</span>
+        <span class="s1">//Create a 20-sided die and roll 5 times</span>
+        <span class="s0">createAndRollTwentySidedDieFiveTimes();</span>
+        <span class="s1">//Create a standard die and roll 20 times</span>
+        <span class="s0">createAndRollStandardDie(</span><span class="s3">20</span><span class="s0">);</span>
+        <span class="s1">//Create a standard die and roll 30 times</span>
+        <span class="s0">createAndRollStandardDie(</span><span class="s3">30</span><span class="s0">);</span>
+        <span class="s1">//Create a 9-sided die and roll 20 times</span>
+        <span class="s0">createAndRollNineSidedDie(</span><span class="s3">20</span><span class="s0">);</span>
+        <span class="s1">//Create a 9-sided die and roll 30 times</span>
+        <span class="s0">createAndRollNineSidedDie(</span><span class="s3">30</span><span class="s0">);</span>
+        <span class="s1">//Ten times, Create a standard die and roll until you get a 1</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;Roll a standard Die until 1 lands 10 times... &quot;</span><span class="s0">);</span>
+        <span class="s2">for</span><span class="s0">(</span><span class="s2">int </span><span class="s0">i = </span><span class="s3">1</span><span class="s0">; i &lt;= </span><span class="s3">10</span><span class="s0">; ++i) {</span>
+            <span class="s0">createAndRollStandardDieFor1();</span>
+        <span class="s0">}</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;</span><span class="s5">\n</span><span class="s4">&quot;</span><span class="s0">);</span>
+        <span class="s1">//Ten times, Create a 12-sided die and roll until you get a 1</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;Roll a 12-sided Die until 1 lands 10 times ... &quot;</span><span class="s0">);</span>
+        <span class="s2">for</span><span class="s0">(</span><span class="s2">int </span><span class="s0">i = </span><span class="s3">1</span><span class="s0">; i &lt;= </span><span class="s3">10</span><span class="s0">; ++i) {</span>
+            <span class="s0">createAndRollTwelveSidedDieFor1();</span>
+        <span class="s0">}</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;</span><span class="s5">\n</span><span class="s4">&quot;</span><span class="s0">);</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">createAndRollStandardDieFiveTimes() {</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;Roll a standard Die 5 times ... &quot;</span><span class="s0">);</span>
+        <span class="s0">Die die = </span><span class="s2">new </span><span class="s0">Die();</span>
+        <span class="s0">die.roll(); System.out.print(die.top() + </span><span class="s4">&quot; &quot;</span><span class="s0">);</span>
+        <span class="s0">die.roll(); System.out.print(die.top() + </span><span class="s4">&quot; &quot;</span><span class="s0">);</span>
+        <span class="s0">die.roll(); System.out.print(die.top() + </span><span class="s4">&quot; &quot;</span><span class="s0">);</span>
+        <span class="s0">die.roll(); System.out.print(die.top() + </span><span class="s4">&quot; &quot;</span><span class="s0">);</span>
+        <span class="s0">die.roll(); System.out.print(die.top() + </span><span class="s4">&quot; &quot;</span><span class="s0">);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;</span><span class="s5">\n</span><span class="s4">&quot;</span><span class="s0">);</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">createAndRollTwentySidedDieFiveTimes() {</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;Roll a 20-sided Die 5 times ... &quot;</span><span class="s0">);</span>
+        <span class="s0">Die die = </span><span class="s2">new </span><span class="s0">Die(</span><span class="s3">20</span><span class="s0">);</span>
+        <span class="s2">for </span><span class="s0">(</span><span class="s2">int </span><span class="s0">i = </span><span class="s3">1</span><span class="s0">; i &lt;= </span><span class="s3">5</span><span class="s0">; ++i) {</span>
+            <span class="s0">die.roll(); System.out.print(die.top() + </span><span class="s4">&quot; &quot;</span><span class="s0">);</span>
+        <span class="s0">}</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;</span><span class="s5">\n</span><span class="s4">&quot;</span><span class="s0">);</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">createAndRollStandardDie(</span><span class="s2">int </span><span class="s0">nrOfTimes) {</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;Roll a standard die &quot; </span><span class="s0">+ nrOfTimes + </span><span class="s4">&quot; times ...&quot;</span><span class="s0">);</span>
+        <span class="s0">Die lucky = </span><span class="s2">new </span><span class="s0">Die();</span>
+        <span class="s2">int </span><span class="s0">i = </span><span class="s3">1</span><span class="s0">;</span>
+        <span class="s2">while </span><span class="s0">(i &lt;= nrOfTimes) {</span>
+            <span class="s0">lucky.roll();</span>
+            <span class="s0">System.out.print(lucky.top() + </span><span class="s4">&quot; &quot;</span><span class="s0">);</span>
+            <span class="s0">++i;</span>
+        <span class="s0">}</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;</span><span class="s5">\n</span><span class="s4">&quot;</span><span class="s0">);</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">createAndRollNineSidedDie(</span><span class="s2">int </span><span class="s0">nrOfTimes) {</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;Roll a 9-sided die &quot; </span><span class="s0">+ nrOfTimes + </span><span class="s4">&quot; times ...&quot;</span><span class="s0">);</span>
+        <span class="s0">Die lucky = </span><span class="s2">new </span><span class="s0">Die(</span><span class="s3">9</span><span class="s0">);</span>
+        <span class="s2">for </span><span class="s0">(</span><span class="s2">int </span><span class="s0">i = </span><span class="s3">1</span><span class="s0">; i &lt;= nrOfTimes; ++i) {</span>
+            <span class="s0">lucky.roll();</span>
+            <span class="s0">System.out.print(lucky.top() + </span><span class="s4">&quot; &quot;</span><span class="s0">);</span>
+        <span class="s0">}</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;</span><span class="s5">\n</span><span class="s4">&quot;</span><span class="s0">);</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">createAndRollStandardDieFor1() {</span>
+        <span class="s0">Die pain = </span><span class="s2">new </span><span class="s0">Die();</span>
+        <span class="s0">System.out.print(pain.top() + </span><span class="s4">&quot; &quot;</span><span class="s0">);</span>
+        <span class="s2">int </span><span class="s0">roll = pain.top();</span>
+        <span class="s2">while</span><span class="s0">(roll != </span><span class="s3">1</span><span class="s0">) {</span>
+            <span class="s0">pain.roll();</span>
+            <span class="s0">System.out.print(pain.top() + </span><span class="s4">&quot; &quot;</span><span class="s0">);</span>
+            <span class="s0">roll = pain.top();</span>
+        <span class="s0">}</span>
+        <span class="s0">System.out.println();</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">createAndRollTwelveSidedDieFor1() {</span>
+        <span class="s0">Die pain = </span><span class="s2">new </span><span class="s0">Die(</span><span class="s3">12</span><span class="s0">);</span>
+        <span class="s0">System.out.print(pain.top() + </span><span class="s4">&quot; &quot;</span><span class="s0">);</span>
+        <span class="s2">int </span><span class="s0">roll = pain.top();</span>
+        <span class="s2">while</span><span class="s0">(roll != </span><span class="s3">1</span><span class="s0">) {</span>
+            <span class="s0">pain.roll();</span>
+            <span class="s0">System.out.print(pain.top() + </span><span class="s4">&quot; &quot;</span><span class="s0">);</span>
+            <span class="s0">roll = pain.top();</span>
+        <span class="s0">}</span>
+        <span class="s0">System.out.println();</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+<span class="s1">//System.out.println(&quot;&quot;);</span></pre>
+</body>
+</html>

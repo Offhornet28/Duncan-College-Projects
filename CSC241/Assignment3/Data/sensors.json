@@ -1,0 +1,96 @@
+{
+  "Owner": "Stephen Jobs",
+  "Location": "Shineman Center 398, Oswego, NY 13126",
+  "Phone": "315-312-2500",
+  "Number of Sensors": 11,
+  "Sensors": [
+    {
+      "ID": "s01",
+      "Type": "motion",
+      "Object": "wall",
+      "Location": "bedroom1",
+      "Default Status": 0.0,
+      "Status": 5.3
+    },
+    {
+      "ID": "s02",
+      "Type": "light",
+      "Object": "light",
+      "Location": "bedroom1",
+      "Default Status": 0.0,
+      "Status": 2.2
+    },
+    {
+      "ID": "s03",
+      "Type": "pressure",
+      "Object": "bed",
+      "Location": "bedroom1",
+      "Default Status": 0.0,
+      "Status": 0.1
+    },
+    {
+      "ID": "s04",
+      "Type": "contact",
+      "Object": "door",
+      "Location": "bedroom1",
+      "Default Status": 0.0,
+      "Status": 4.0
+    },
+    {
+      "ID": "s05",
+      "Type": "temperature",
+      "Object": "wall",
+      "Location": "bedroom1",
+      "Default Status": 50.0,
+      "Status": 71.1
+    },
+    {
+      "ID": "s11",
+      "Type": "motion",
+      "Object": "wall",
+      "Location": "livingroom",
+      "Default Status": 0.0,
+      "Status": 0.1
+    },
+    {
+      "ID": "s12",
+      "Type": "light",
+      "Object": "light",
+      "Location": "livingroom",
+      "Default Status": 0.0,
+      "Status": 0.1
+    },
+    {
+      "ID": "s13",
+      "Type": "pressure",
+      "Object": "sofa",
+      "Location": "livingroom",
+      "Default Status": 0.0,
+      "Status": 0.1
+    },
+    {
+      "ID": "s14",
+      "Type": "pressure",
+      "Object": "table",
+      "Location": "livingroom",
+      "Default Status": 0.0,
+      "Status": 0.1
+    },
+    {
+      "ID": "s15",
+      "Type": "pressure",
+      "Object": "tv",
+      "Location": "livingroom",
+      "Default Status": 0.0,
+      "Status": 0.1
+    },
+    {
+      "ID": "s16",
+      "Type": "temperature",
+      "Object": "wall",
+      "Location": "livingroom",
+      "Default Status": 50.0,
+      "Status": 70.8
+    }
+  ]
+}

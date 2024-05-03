@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>DrainageArea.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #1750eb;}
+.s4 { color: #067d17;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DrainageArea.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * Programming challenge 3 problem 2 program 
+ * All number values are in Inches (in) unless stated otherwise 
+ */</span>
+<span class="s2">package </span><span class="s0">shapes;</span>
+
+<span class="s2">public class </span><span class="s0">DrainageArea {</span>
+    <span class="s2">public static void </span><span class="s0">main(String[] args) {</span>
+        <span class="s1">//Given Values</span>
+        <span class="s2">double </span><span class="s0">twelveFootBoardArea = </span><span class="s3">792</span><span class="s0">; </span><span class="s1">//There are 15 of them. Dimensions: 5.5 in x 144 in (12ft)</span>
+        <span class="s2">double </span><span class="s0">eightFootBoardArea = </span><span class="s3">528</span><span class="s0">; </span><span class="s1">//There are 19 of them. Dimensions: 5.5 in x 96 in (8ft)</span>
+        <span class="s1">//Calculate total board area</span>
+        <span class="s2">double </span><span class="s0">twelveFootBoardAreaTotal = (twelveFootBoardArea * </span><span class="s3">15</span><span class="s0">); </span><span class="s1">//15 boards</span>
+        <span class="s2">double </span><span class="s0">eightFootBoardAreaTotal = (eightFootBoardArea * </span><span class="s3">19</span><span class="s0">); </span><span class="s1">//19 boards</span>
+        <span class="s2">double </span><span class="s0">totalBoardArea = (twelveFootBoardAreaTotal + eightFootBoardAreaTotal);</span>
+        <span class="s1">//Split the L into two rectangles</span>
+        <span class="s2">double </span><span class="s0">lSubRecArea1 = (</span><span class="s3">84 </span><span class="s0">* </span><span class="s3">144</span><span class="s0">); </span><span class="s1">//7 ft x 12 ft</span>
+        <span class="s2">double </span><span class="s0">lSubRecArea2 = (</span><span class="s3">108 </span><span class="s0">* </span><span class="s3">96</span><span class="s0">); </span><span class="s1">//9 ft x 8 ft</span>
+        <span class="s2">double </span><span class="s0">lTotalArea = (lSubRecArea1 + lSubRecArea2);</span>
+        <span class="s1">//Calculate the Results</span>
+        <span class="s2">double </span><span class="s0">drainageAreaInches = (lTotalArea - totalBoardArea);</span>
+        <span class="s2">double </span><span class="s0">drainageAreaFeet = (drainageAreaInches / </span><span class="s3">12</span><span class="s0">);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;total area of the boards: &quot; </span><span class="s0">+ totalBoardArea + </span><span class="s4">&quot; inches&quot;</span><span class="s0">);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;total area of the deck: &quot; </span><span class="s0">+ lTotalArea + </span><span class="s4">&quot; inches&quot;</span><span class="s0">);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;Drainage Area: &quot; </span><span class="s0">+ drainageAreaInches + </span><span class="s4">&quot; inches&quot;</span><span class="s0">);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;Drainage Area: &quot; </span><span class="s0">+ drainageAreaFeet + </span><span class="s4">&quot; feet&quot;</span><span class="s0">);</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>

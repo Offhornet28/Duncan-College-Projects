@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>Primes.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #1750eb;}
+.s4 { color: #067d17;}
+.s5 { color: #0037a6;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Primes.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ *A program that uses loops to display values of an array in different orders. 
+ */</span>
+
+<span class="s2">package </span><span class="s0">arrayplay;</span>
+
+<span class="s2">public class </span><span class="s0">Primes {</span>
+    <span class="s2">public static void </span><span class="s0">main(String[] args) {</span>
+        <span class="s1">//Initial Array</span>
+        <span class="s2">int</span><span class="s0">[] primes = </span><span class="s2">new int</span><span class="s0">[</span><span class="s3">4</span><span class="s0">];</span>
+        <span class="s0">primes[</span><span class="s3">0</span><span class="s0">] = </span><span class="s3">2</span><span class="s0">;</span>
+        <span class="s0">primes[</span><span class="s3">1</span><span class="s0">] = </span><span class="s3">3</span><span class="s0">;</span>
+        <span class="s0">primes[</span><span class="s3">2</span><span class="s0">] = </span><span class="s3">5</span><span class="s0">;</span>
+        <span class="s0">primes[</span><span class="s3">3</span><span class="s0">] = </span><span class="s3">7</span><span class="s0">;</span>
+        <span class="s1">//Basic Array Info</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;length of primes array = &quot; </span><span class="s0">+ primes.length);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;first prime = &quot; </span><span class="s0">+ primes[</span><span class="s3">0</span><span class="s0">]);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;last prime = &quot; </span><span class="s0">+ primes[</span><span class="s3">3</span><span class="s0">]);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;last prime = &quot; </span><span class="s0">+ primes[primes.length - </span><span class="s3">1</span><span class="s0">]);</span>
+        <span class="s1">//Loops</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;</span><span class="s5">\n</span><span class="s4">The initial array ...&quot;</span><span class="s0">);</span>
+        <span class="s2">int </span><span class="s0">i = </span><span class="s3">0</span><span class="s0">;</span>
+        <span class="s2">while </span><span class="s0">(i &lt; primes.length) {</span>
+            <span class="s0">System.out.println(primes[i]);</span>
+            <span class="s0">i = i + </span><span class="s3">1</span><span class="s0">;</span>
+        <span class="s0">}</span>
+
+        <span class="s2">int </span><span class="s0">temp = primes[</span><span class="s3">0</span><span class="s0">];</span>
+        <span class="s0">primes[</span><span class="s3">0</span><span class="s0">] = primes[primes.length - </span><span class="s3">1</span><span class="s0">];</span>
+        <span class="s0">primes[primes.length - </span><span class="s3">1</span><span class="s0">] = temp;</span>
+
+        <span class="s0">System.out.println(</span><span class="s4">&quot;</span><span class="s5">\n</span><span class="s4">The final Array&quot;</span><span class="s0">);</span>
+        <span class="s2">for</span><span class="s0">(</span><span class="s2">int </span><span class="s0">x = </span><span class="s3">0</span><span class="s0">; x &lt; primes.length; x = x + </span><span class="s3">1</span><span class="s0">) {</span>
+            <span class="s0">System.out.println(primes[x]);</span>
+        <span class="s0">}</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>

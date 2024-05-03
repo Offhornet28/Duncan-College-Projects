@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>BasicsListener.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #067d17;}
+.s4 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+BasicsListener.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * Program to check ot (view and possibly listen to) the eight melodic sequences classified as &quot;Basic&quot; sequences in the 
+ * Modular Melody World, mmw. 
+ */</span>
+
+<span class="s2">package </span><span class="s0">mmw;</span>
+<span class="s2">import </span><span class="s0">composer.SComposer;</span>
+
+<span class="s2">public class </span><span class="s0">BasicsListener {</span>
+
+    <span class="s2">public static void </span><span class="s0">main(String[] args){</span>
+        <span class="s0">SComposer c = </span><span class="s2">new </span><span class="s0">SComposer();</span>
+        <span class="s0">c.text();</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;c.mms1 ...&quot;</span><span class="s0">); c.mms1(); space(c);</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;c.mms2 ...&quot;</span><span class="s0">); c.mms2(); space(c);</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;c.mms3 ...&quot;</span><span class="s0">); c.mms3(); space(c);</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;c.mms4 ...&quot;</span><span class="s0">); c.mms4(); space(c);</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;c.mms5 ...&quot;</span><span class="s0">); c.mms5(); space(c);</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;c.mms6 ...&quot;</span><span class="s0">); c.mms6(); space(c);</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;c.mms7 ...&quot;</span><span class="s0">); c.mms7(); space(c);</span>
+        <span class="s0">System.out.println(</span><span class="s3">&quot;c.mms8 ...&quot;</span><span class="s0">); c.mms8(); space(c);</span>
+        <span class="s0">c.untext();</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">space(SComposer c) {</span>
+        <span class="s0">c.untext(); c.rest(</span><span class="s4">2</span><span class="s0">); c.text();</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>BlackSpace.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #1750eb;}
+.s4 { color: #067d17;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+BlackSpace.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * Programming challenge 3 problem 3 program 
+ * All number values are in Millimeters (mm) unless stated otherwise 
+ */</span>
+
+<span class="s2">package </span><span class="s0">shapes;</span>
+<span class="s2">import </span><span class="s0">java.awt.Color;</span>
+<span class="s2">import </span><span class="s0">painter.SPainter;</span>
+<span class="s2">import </span><span class="s0">shapes.SCircle;</span>
+<span class="s2">import </span><span class="s0">shapes.SSquare;</span>
+
+<span class="s2">public class </span><span class="s0">BlackSpace {</span>
+    <span class="s2">public static void </span><span class="s0">main(String[] args) {</span>
+        <span class="s0">SSquare tableCloth = </span><span class="s2">new </span><span class="s0">SSquare(</span><span class="s3">800</span><span class="s0">); </span><span class="s1">//side length of 800 mm</span>
+        <span class="s0">SCircle blueCircle = </span><span class="s2">new </span><span class="s0">SCircle(</span><span class="s3">360</span><span class="s0">); </span><span class="s1">//circle is 40 mm away from the edges of the square</span>
+        <span class="s0">SSquare greenDiamond = blueCircle.inscribingSquare(); </span><span class="s1">//inscribing square of blue circle</span>
+        <span class="s0">SCircle interiorBlackCircle = </span><span class="s2">new </span><span class="s0">SCircle((greenDiamond.side()/</span><span class="s3">2</span><span class="s0">)-</span><span class="s3">30</span><span class="s0">); </span><span class="s1">// 0 mm away from the midpoint of green diamond</span>
+        <span class="s2">double </span><span class="s0">initialSquareArea = tableCloth.area(); </span><span class="s1">//640,000 mm</span>
+        <span class="s2">double </span><span class="s0">blackCircleArea = interiorBlackCircle.area();</span>
+        <span class="s2">double </span><span class="s0">blueCircleArea = blueCircle.area();</span>
+        <span class="s2">double </span><span class="s0">blackSpaceArea = (initialSquareArea - (blueCircleArea - blackCircleArea));</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;Black Space Area: &quot; </span><span class="s0">+ blackSpaceArea + </span><span class="s4">&quot; mm&quot;</span><span class="s0">);</span>
+    <span class="s0">}</span>
+
+    <span class="s1">//ignore this, it just makes me visualize it better</span>
+    <span class="s2">private void </span><span class="s0">displayProblem() {</span>
+        <span class="s0">SPainter jill = </span><span class="s2">new </span><span class="s0">SPainter(</span><span class="s4">&quot;Table Cloth&quot;</span><span class="s0">,</span><span class="s3">1000</span><span class="s0">,</span><span class="s3">1000</span><span class="s0">);</span>
+        <span class="s0">SSquare outerSquare = </span><span class="s2">new </span><span class="s0">SSquare(</span><span class="s3">800</span><span class="s0">);</span>
+        <span class="s0">jill.setColor(Color.BLACK); jill.paint(outerSquare);</span>
+        <span class="s0">SCircle outerCircle = </span><span class="s2">new </span><span class="s0">SCircle(</span><span class="s3">360</span><span class="s0">);</span>
+        <span class="s0">jill.setColor(Color.BLUE); jill.paint(outerCircle);</span>
+        <span class="s0">SSquare middleDiamond = outerCircle.inscribingSquare();</span>
+        <span class="s0">jill.setColor(Color.GREEN); jill.setHeading(</span><span class="s3">45</span><span class="s0">); jill.paint(middleDiamond); jill.faceNorth();</span>
+        <span class="s0">SCircle innerCircle = </span><span class="s2">new </span><span class="s0">SCircle((middleDiamond.side()/</span><span class="s3">2</span><span class="s0">)-</span><span class="s3">30</span><span class="s0">);</span>
+        <span class="s0">jill.setColor(Color.BLACK); jill.paint(innerCircle);</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>

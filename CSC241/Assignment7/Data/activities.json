@@ -1,0 +1,20 @@
+{
+  "Owner": "Stephen Jobs",
+  "Location": "Shineman Center 398, Oswego, NY 13126",
+  "Phone": "315-312-2500",
+  "Number of Activities": 3,
+  "Activities": [
+    {
+      "ID": "a01",
+      "Name": "Sleeping"
+    },
+    {
+      "ID": "a02",
+      "Name": "Taking shower"
+    },
+    {
+      "ID": "a03",
+      "Name": "Making breakfast"
+    }
+  ]
+}

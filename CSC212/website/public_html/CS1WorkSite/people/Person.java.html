@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>Person.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #067d17;}
+.s4 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Person.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * Class to model a person in terms of first name, last name, and date of birth 
+ */</span>
+
+<span class="s2">package </span><span class="s0">people;</span>
+
+<span class="s2">public class </span><span class="s0">Person </span><span class="s2">implements </span><span class="s0">PersonSpecification {</span>
+    <span class="s1">//Instance Variables</span>
+    <span class="s2">private </span><span class="s0">String firstName;</span>
+    <span class="s2">private </span><span class="s0">String lastName;</span>
+    <span class="s2">private int </span><span class="s0">month;</span>
+    <span class="s2">private int </span><span class="s0">day;</span>
+    <span class="s2">private int </span><span class="s0">year;</span>
+
+    <span class="s1">//Constructors</span>
+    <span class="s2">public </span><span class="s0">Person(String name, </span><span class="s2">int </span><span class="s0">month, </span><span class="s2">int </span><span class="s0">day, </span><span class="s2">int </span><span class="s0">year) {</span>
+        <span class="s2">int </span><span class="s0">spacePosition = name.indexOf(</span><span class="s3">' '</span><span class="s0">);</span>
+        <span class="s2">this</span><span class="s0">.firstName = name.substring(</span><span class="s4">0</span><span class="s0">, spacePosition);</span>
+        <span class="s2">this</span><span class="s0">.lastName = name.substring(spacePosition + </span><span class="s4">1</span><span class="s0">);</span>
+        <span class="s2">this</span><span class="s0">.month = month;</span>
+        <span class="s2">this</span><span class="s0">.day = day;</span>
+        <span class="s2">this</span><span class="s0">.year = year;</span>
+    <span class="s0">}</span>
+    <span class="s1">//Methods</span>
+    <span class="s2">public </span><span class="s0">String toString() {</span>
+        <span class="s2">return </span><span class="s0">firstName + </span><span class="s3">&quot; &quot; </span><span class="s0">+ lastName + </span><span class="s3">&quot;, born &quot; </span><span class="s0">+ month + </span><span class="s3">&quot;/&quot; </span><span class="s0">+ day + </span><span class="s3">&quot;/&quot; </span><span class="s0">+ year;</span>
+    <span class="s0">}</span>
+
+    <span class="s2">public </span><span class="s0">String firstName() {</span>
+        <span class="s2">return </span><span class="s0">firstName;</span>
+    <span class="s0">}</span>
+
+    <span class="s2">public </span><span class="s0">String lastName() {</span>
+        <span class="s2">return </span><span class="s0">lastName;</span>
+    <span class="s0">}</span>
+
+    <span class="s2">public int </span><span class="s0">month() {</span>
+        <span class="s2">return </span><span class="s0">month;</span>
+    <span class="s0">}</span>
+
+    <span class="s2">public int </span><span class="s0">day() {</span>
+        <span class="s2">return </span><span class="s0">day;</span>
+    <span class="s0">}</span>
+
+    <span class="s2">public int </span><span class="s0">year() {</span>
+        <span class="s2">return </span><span class="s0">year;</span>
+    <span class="s0">}</span>
+
+    <span class="s2">public </span><span class="s0">String initials() {</span>
+        <span class="s2">return </span><span class="s0">firstName.substring(</span><span class="s4">0</span><span class="s0">,</span><span class="s4">1</span><span class="s0">) + lastName.substring(</span><span class="s4">0</span><span class="s0">,</span><span class="s4">1</span><span class="s0">);</span>
+    <span class="s0">}</span>
+
+    <span class="s2">public boolean </span><span class="s0">isBoomer() {</span>
+        <span class="s2">return </span><span class="s0">(year &gt;= </span><span class="s4">1946 </span><span class="s0">&amp; year &lt;= </span><span class="s4">1964</span><span class="s0">);</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>

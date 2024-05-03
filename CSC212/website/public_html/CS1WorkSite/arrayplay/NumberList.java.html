@@ -1,0 +1,154 @@
+<html>
+<head>
+<title>NumberList.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #1750eb;}
+.s4 { color: #067d17;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+NumberList.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * Program featuring an array to store and interactively manipulate a list of numbers. 
+ */</span>
+
+<span class="s2">package </span><span class="s0">arrayplay;</span>
+<span class="s2">import </span><span class="s0">java.io.File;</span>
+<span class="s2">import </span><span class="s0">java.io.FileNotFoundException;</span>
+<span class="s2">import </span><span class="s0">java.util.Scanner;</span>
+
+<span class="s2">public class </span><span class="s0">NumberList {</span>
+    <span class="s1">//Local variables of the class to be used globally within it</span>
+    <span class="s2">private static final int </span><span class="s0">LIMIT = </span><span class="s3">1000</span><span class="s0">;</span>
+    <span class="s2">private static int</span><span class="s0">[] numbers = </span><span class="s2">new int</span><span class="s0">[LIMIT];</span>
+    <span class="s2">private static int </span><span class="s0">numberOfNumbers = </span><span class="s3">0</span><span class="s0">;</span>
+    <span class="s2">private static </span><span class="s0">Scanner commandReader = </span><span class="s2">new </span><span class="s0">Scanner(System.in);</span>
+
+    <span class="s2">public static void </span><span class="s0">main(String[] args) {</span>
+        <span class="s2">try </span><span class="s0">{</span>
+            <span class="s1">//Establish array of numbers</span>
+            <span class="s0">readNumbers();</span>
+            <span class="s1">//Check the Data</span>
+            <span class="s1">//System.out.println(&quot;nThe original list of numbers ...&quot;);</span>
+            <span class="s1">//displayNumbers();</span>
+            <span class="s1">//Enter the Interpreter</span>
+            <span class="s0">interpreter();</span>
+        <span class="s0">} </span><span class="s2">catch </span><span class="s0">(FileNotFoundException ex) {</span>
+            <span class="s0">System.out.println(</span><span class="s4">&quot;The file was not found. Please think again.&quot;</span><span class="s0">);</span>
+            <span class="s0">System.exit(-</span><span class="s3">1</span><span class="s0">);</span>
+        <span class="s0">}</span>
+    <span class="s0">}</span>
+
+    <span class="s1">//Assuming that the data file will be found in the public_html/data</span>
+    <span class="s1">//subdirectory of the user’s home directory.</span>
+    <span class="s2">private static </span><span class="s0">Scanner establishScanner(String fn) </span><span class="s2">throws </span><span class="s0">FileNotFoundException {</span>
+        <span class="s0">String separator = File.separator;</span>
+        <span class="s0">String homeDirectory = System.getProperty(</span><span class="s4">&quot;user.home&quot;</span><span class="s0">);</span>
+        <span class="s0">String path = homeDirectory + separator + </span><span class="s4">&quot;public_html&quot; </span><span class="s0">+ separator + </span><span class="s4">&quot;data&quot; </span><span class="s0">+ separator;</span>
+        <span class="s0">String fullFileName = path + fn;</span>
+        <span class="s2">return new </span><span class="s0">Scanner(</span><span class="s2">new </span><span class="s0">File(fullFileName));</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">readNumbers() </span><span class="s2">throws </span><span class="s0">FileNotFoundException {</span>
+        <span class="s0">Scanner scanner = establishScanner(</span><span class="s4">&quot;NumberSet.txt&quot;</span><span class="s0">);</span>
+        <span class="s2">while </span><span class="s0">(scanner.hasNext()) {</span>
+            <span class="s0">numbers[numberOfNumbers] = scanner.nextInt();</span>
+            <span class="s0">numberOfNumbers = numberOfNumbers + </span><span class="s3">1</span><span class="s0">;</span>
+        <span class="s0">}</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">displayNumbers() {</span>
+        <span class="s2">for </span><span class="s0">(</span><span class="s2">int </span><span class="s0">x = </span><span class="s3">0</span><span class="s0">; x &lt; numberOfNumbers; x = x + </span><span class="s3">1</span><span class="s0">) {</span>
+            <span class="s0">System.out.println(numbers[x]);</span>
+        <span class="s0">}</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">interpreter() {</span>
+        <span class="s0">System.out.print(</span><span class="s4">&quot;&gt;&gt;&gt; &quot;</span><span class="s0">);</span>
+        <span class="s0">String command = commandReader.next();</span>
+        <span class="s2">if </span><span class="s0">(command.equalsIgnoreCase(</span><span class="s4">&quot;DISPLAY&quot;</span><span class="s0">)) {</span>
+            <span class="s0">interpreterDisplayCommand();</span>
+        <span class="s0">} </span><span class="s2">else if </span><span class="s0">(command.equalsIgnoreCase(</span><span class="s4">&quot;PRINT&quot;</span><span class="s0">)) {</span>
+            <span class="s0">interpretPrintCommand();</span>
+        <span class="s0">} </span><span class="s2">else if </span><span class="s0">(command.equalsIgnoreCase(</span><span class="s4">&quot;SWAP&quot;</span><span class="s0">)) {</span>
+            <span class="s0">interpretSwapCommand();</span>
+        <span class="s0">} </span><span class="s2">else if </span><span class="s0">(command.equalsIgnoreCase(</span><span class="s4">&quot;ADD&quot;</span><span class="s0">)) {</span>
+            <span class="s0">interpretAddCommand();</span>
+        <span class="s0">} </span><span class="s2">else if </span><span class="s0">(command.equalsIgnoreCase(</span><span class="s4">&quot;HELP&quot;</span><span class="s0">)) {</span>
+            <span class="s0">interpretHelpCommand();</span>
+        <span class="s0">} </span><span class="s2">else if </span><span class="s0">(command.equalsIgnoreCase(</span><span class="s4">&quot;EXIT&quot;</span><span class="s0">)) {</span>
+            <span class="s0">System.exit(</span><span class="s3">0</span><span class="s0">);</span>
+        <span class="s0">} </span><span class="s2">else </span><span class="s0">{</span>
+            <span class="s0">System.out.println(</span><span class="s4">&quot;### Unrecognizable command: &quot; </span><span class="s0">+ command);</span>
+        <span class="s0">}</span>
+        <span class="s0">interpreter();</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">interpreterDisplayCommand() {</span>
+        <span class="s0">displayNumbers();</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">interpretPrintCommand() {</span>
+        <span class="s0">String operand = commandReader.next();</span>
+        <span class="s2">if </span><span class="s0">(operand.equalsIgnoreCase(</span><span class="s4">&quot;FIRST&quot;</span><span class="s0">)) {</span>
+            <span class="s0">System.out.println(numbers[</span><span class="s3">0</span><span class="s0">]);</span>
+        <span class="s0">} </span><span class="s2">else if </span><span class="s0">(operand.equalsIgnoreCase(</span><span class="s4">&quot;LAST&quot;</span><span class="s0">)) {</span>
+            <span class="s0">System.out.println(numbers[numberOfNumbers - </span><span class="s3">1</span><span class="s0">]);</span>
+        <span class="s0">} </span><span class="s2">else </span><span class="s0">{</span>
+            <span class="s2">int </span><span class="s0">index = Integer.valueOf(operand);</span>
+            <span class="s0">System.out.println(numbers[index - </span><span class="s3">1</span><span class="s0">]);</span>
+        <span class="s0">}</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">interpretHelpCommand() {</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;HELP - display a menu of commands&quot;</span><span class="s0">);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;DISPLAY - display the list of numbers&quot;</span><span class="s0">);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;PRINT - print a number (FIRST;LAST;nth)&quot;</span><span class="s0">);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;SWAP - exchange two elements (nth;mth)&quot;</span><span class="s0">);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;ADD - add a number to the list (FIRST;LAST)&quot;</span><span class="s0">);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;EXIT - terminate execution of the program&quot;</span><span class="s0">);</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">interpretSwapCommand() {</span>
+        <span class="s2">int </span><span class="s0">position1 = commandReader.nextInt();</span>
+        <span class="s2">int </span><span class="s0">position2 = commandReader.nextInt();</span>
+        <span class="s2">int </span><span class="s0">temp = numbers[position1 - </span><span class="s3">1</span><span class="s0">];</span>
+        <span class="s0">numbers[position1 - </span><span class="s3">1</span><span class="s0">] = numbers[position2 - </span><span class="s3">1</span><span class="s0">];</span>
+        <span class="s0">numbers[position2 - </span><span class="s3">1</span><span class="s0">] = temp;</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">interpretAddCommand() {</span>
+        <span class="s0">String position = commandReader.next();</span>
+        <span class="s2">if </span><span class="s0">(position.equalsIgnoreCase(</span><span class="s4">&quot;LAST&quot;</span><span class="s0">)) {</span>
+            <span class="s0">addLast();</span>
+        <span class="s0">} </span><span class="s2">else if </span><span class="s0">(position.equalsIgnoreCase(</span><span class="s4">&quot;FIRST&quot;</span><span class="s0">)) {</span>
+            <span class="s0">addFirst();</span>
+        <span class="s0">} </span><span class="s2">else </span><span class="s0">{</span>
+            <span class="s0">System.out.println(</span><span class="s4">&quot;### invalid operand for add command&quot;</span><span class="s0">);</span>
+        <span class="s0">}</span>
+        <span class="s0">numberOfNumbers = numberOfNumbers + </span><span class="s3">1</span><span class="s0">;</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">addLast() {</span>
+        <span class="s0">numbers[numberOfNumbers] = commandReader.nextInt();</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static void </span><span class="s0">addFirst() {</span>
+        <span class="s2">for </span><span class="s0">(</span><span class="s2">int </span><span class="s0">x = numberOfNumbers; x &gt; </span><span class="s3">0</span><span class="s0">; x = x - </span><span class="s3">1</span><span class="s0">) {</span>
+            <span class="s0">numbers[x] = numbers[x - </span><span class="s3">1</span><span class="s0">];</span>
+        <span class="s0">}</span>
+        <span class="s0">numbers[</span><span class="s3">0</span><span class="s0">] = commandReader.nextInt();</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>

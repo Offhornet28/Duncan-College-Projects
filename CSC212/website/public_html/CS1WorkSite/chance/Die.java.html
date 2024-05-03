@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Die.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Die.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * Model a die in terms of two properties 
+ *  -order: number of faces 
+ *  -top: the value of the top face 
+ */</span>
+
+<span class="s2">package </span><span class="s0">chance;</span>
+
+<span class="s2">public class </span><span class="s0">Die {</span>
+    <span class="s1">//Instance Variables (state)</span>
+    <span class="s2">private int </span><span class="s0">order;</span>
+    <span class="s2">private int </span><span class="s0">top;</span>
+    
+    <span class="s1">//Constructors</span>
+    <span class="s2">public </span><span class="s0">Die() {</span>
+        <span class="s0">order = </span><span class="s3">6</span><span class="s0">;</span>
+        <span class="s0">top = (</span><span class="s2">int</span><span class="s0">)((Math.random() * </span><span class="s3">6</span><span class="s0">) + </span><span class="s3">1</span><span class="s0">);</span>
+    <span class="s0">}</span>
+    <span class="s2">public </span><span class="s0">Die(</span><span class="s2">int </span><span class="s0">nrOfSides) {</span>
+        <span class="s0">order = nrOfSides;</span>
+        <span class="s0">top = (</span><span class="s2">int</span><span class="s0">)((Math.random() * nrOfSides) + </span><span class="s3">1</span><span class="s0">);</span>
+    <span class="s0">}</span>
+    
+    <span class="s1">//Methods (behaviors)</span>
+    <span class="s2">public int </span><span class="s0">top() {</span>
+        <span class="s2">return </span><span class="s0">top;</span>
+    <span class="s0">}</span>
+    <span class="s2">public void </span><span class="s0">roll() {</span>
+        <span class="s0">top = (</span><span class="s2">int</span><span class="s0">)((Math.random() * order) + </span><span class="s3">1</span><span class="s0">);</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>

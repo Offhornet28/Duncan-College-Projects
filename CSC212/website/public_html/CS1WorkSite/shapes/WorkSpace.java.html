@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>WorkSpace.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #1750eb;}
+.s4 { color: #067d17;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+WorkSpace.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * Programming challenge 3 problem 1 program 
+ * All number values are in Inches (in) 
+ * None of the objects on the desk lie atop any others (except for the cans upon the coasters). 
+ */</span>
+<span class="s2">package </span><span class="s0">shapes;</span>
+
+<span class="s2">public class </span><span class="s0">WorkSpace {</span>
+
+    <span class="s2">public static void </span><span class="s0">main(String[] args) {</span>
+        <span class="s1">//Initial Values</span>
+        <span class="s2">double </span><span class="s0">deskDepth = </span><span class="s3">30</span><span class="s0">;</span>
+        <span class="s2">double </span><span class="s0">deskWidth = </span><span class="s3">72</span><span class="s0">;</span>
+        <span class="s2">double </span><span class="s0">notebookArea = </span><span class="s3">48</span><span class="s0">; </span><span class="s1">// There are two of them. Dimensions: 6 in x 8 in</span>
+        <span class="s2">double </span><span class="s0">labManualArea = </span><span class="s3">135</span><span class="s0">; </span><span class="s1">// 10 in x 13.5 in</span>
+        <span class="s2">double </span><span class="s0">canRadius = </span><span class="s3">1.325</span><span class="s0">; </span><span class="s1">//There are two of them. Perfectly inscribe 2 respective square coasters.</span>
+        <span class="s2">double </span><span class="s0">plateDiameter = </span><span class="s3">6</span><span class="s0">; </span><span class="s1">//There are six of them.</span>
+        <span class="s1">//Desk Values</span>
+        <span class="s2">double </span><span class="s0">initialDeskArea = (deskWidth * deskDepth);</span>
+        <span class="s1">//Notebook Calculations</span>
+        <span class="s2">double </span><span class="s0">totalNotebookArea = (notebookArea * </span><span class="s3">2</span><span class="s0">);</span>
+        <span class="s1">//Coaster Calculations</span>
+        <span class="s0">SCircle can = </span><span class="s2">new </span><span class="s0">SCircle(canRadius);</span>
+        <span class="s0">SSquare coaster = can.circumscribingSquare();</span>
+        <span class="s2">double </span><span class="s0">coasterArea = coaster.area();</span>
+        <span class="s2">double </span><span class="s0">totalCoasterArea = (coasterArea * </span><span class="s3">2</span><span class="s0">);</span>
+        <span class="s1">//Plate Calculations</span>
+        <span class="s0">SCircle plate = </span><span class="s2">new </span><span class="s0">SCircle(plateDiameter / </span><span class="s3">2.0</span><span class="s0">);</span>
+        <span class="s2">double </span><span class="s0">plateArea = plate.area();</span>
+        <span class="s2">double </span><span class="s0">totalPlateArea = (plateArea * </span><span class="s3">6</span><span class="s0">);</span>
+        <span class="s1">//Total Area Calculations</span>
+        <span class="s2">double </span><span class="s0">totalObjectArea = (totalNotebookArea + labManualArea + totalCoasterArea + totalPlateArea);</span>
+        <span class="s2">double </span><span class="s0">finalDeskArea = (initialDeskArea -totalObjectArea);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;Initial Desk Area: &quot; </span><span class="s0">+ initialDeskArea + </span><span class="s4">&quot; in&quot;</span><span class="s0">);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;Total Object Area: &quot; </span><span class="s0">+ totalObjectArea + </span><span class="s4">&quot; in&quot;</span><span class="s0">);</span>
+        <span class="s0">System.out.println(</span><span class="s4">&quot;Final Desk Area: &quot; </span><span class="s0">+ finalDeskArea + </span><span class="s4">&quot; in&quot;</span><span class="s0">);</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>

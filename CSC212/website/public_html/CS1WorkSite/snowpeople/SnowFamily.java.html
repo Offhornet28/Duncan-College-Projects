@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>SnowFamily.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #1750eb;}
+.s4 { color: #067d17;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+SnowFamily.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * A class to represent a family of snow people 
+ */</span>
+
+<span class="s2">package </span><span class="s0">snowpeople;</span>
+<span class="s2">import </span><span class="s0">java.util.ArrayList;</span>
+<span class="s2">import </span><span class="s0">javax.swing.JOptionPane;</span>
+<span class="s2">import </span><span class="s0">java.util.Scanner;</span>
+<span class="s2">import </span><span class="s0">java.awt.Color;</span>
+<span class="s2">import </span><span class="s0">painter.SPainter;</span>
+<span class="s2">import </span><span class="s0">java.awt.geom.Point2D;</span>
+
+<span class="s2">public class </span><span class="s0">SnowFamily {</span>
+
+    <span class="s2">public </span><span class="s0">ArrayList&lt;SnowPerson&gt; snowFamily;</span>
+
+    <span class="s2">public </span><span class="s0">SnowFamily(</span><span class="s2">int </span><span class="s0">nrOfPeople) {</span>
+        <span class="s0">snowFamily = </span><span class="s2">new </span><span class="s0">ArrayList&lt;&gt;();</span>
+        <span class="s2">for</span><span class="s0">(</span><span class="s2">int </span><span class="s0">i = </span><span class="s3">1</span><span class="s0">; i &lt; nrOfPeople + </span><span class="s3">1</span><span class="s0">; ++i) {</span>
+            <span class="s0">String nameInput = JOptionPane.showInputDialog(</span><span class="s2">null</span><span class="s0">, </span><span class="s4">&quot;Name of snowPerson&quot; </span><span class="s0">+ i + </span><span class="s4">&quot;?&quot;</span><span class="s0">);</span>
+            <span class="s2">double </span><span class="s0">heightInput = getNumber(</span><span class="s4">&quot;Height of snowPerson&quot; </span><span class="s0">+ i);</span>
+            <span class="s2">int </span><span class="s0">buttonInput = getNumber(</span><span class="s4">&quot;Number of buttons on snowPerson&quot; </span><span class="s0">+ i);</span>
+            <span class="s0">Color colorInput = getColor(</span><span class="s4">&quot;Color of snowPerson&quot; </span><span class="s0">+ i);</span>
+            <span class="s0">snowFamily.add(</span><span class="s2">new </span><span class="s0">SnowPerson(nameInput, heightInput, buttonInput, colorInput));</span>
+        <span class="s0">}</span>
+    <span class="s0">}</span>
+
+    <span class="s2">public </span><span class="s0">String toString() {</span>
+        <span class="s0">String out = </span><span class="s4">&quot;[&quot;</span><span class="s0">;</span>
+        <span class="s0">String temp;</span>
+        <span class="s2">for </span><span class="s0">(SnowPerson snowPerson : snowFamily) {</span>
+            <span class="s0">temp = out;</span>
+            <span class="s0">out = temp + </span><span class="s4">&quot; &quot; </span><span class="s0">+ snowPerson.toString() + </span><span class="s4">&quot;,&quot;</span><span class="s0">;</span>
+        <span class="s0">}</span>
+        <span class="s2">return </span><span class="s0">out + </span><span class="s4">&quot; ]&quot;</span><span class="s0">;</span>
+    <span class="s0">}</span>
+
+    <span class="s2">public void </span><span class="s0">paint(SPainter painter) {</span>
+        <span class="s0">Point2D.Double initialPosition = painter.position();</span>
+        <span class="s1">//Spacing Calculation</span>
+        <span class="s2">double </span><span class="s0">painterWidth = painter.getWidth();</span>
+        <span class="s2">double </span><span class="s0">temp;</span>
+        <span class="s2">double </span><span class="s0">finalWidth = painterWidth;</span>
+        <span class="s2">for</span><span class="s0">(SnowPerson snowPerson : snowFamily) {</span>
+            <span class="s0">temp = finalWidth;</span>
+            <span class="s0">finalWidth = temp - snowPerson.width();</span>
+        <span class="s0">}</span>
+        <span class="s2">double </span><span class="s0">spacing = finalWidth / snowFamily.size();</span>
+        <span class="s1">//Painting the Family</span>
+        <span class="s0">painter.mlt(painter.canvasWidth() / </span><span class="s3">2.0</span><span class="s0">);</span>
+        <span class="s2">for </span><span class="s0">(</span><span class="s2">int </span><span class="s0">idx = </span><span class="s3">0</span><span class="s0">; idx &lt; snowFamily.size(); ++idx) {</span>
+            <span class="s2">if</span><span class="s0">(idx == </span><span class="s3">0</span><span class="s0">) {</span>
+                <span class="s0">painter.mrt(spacing / </span><span class="s3">2.0</span><span class="s0">);</span>
+                <span class="s0">painter.mrt((snowFamily.get(idx).width()) / </span><span class="s3">2.0</span><span class="s0">);</span>
+                <span class="s0">snowFamily.get(idx).paint(painter);</span>
+            <span class="s0">} </span><span class="s2">else </span><span class="s0">{</span>
+                <span class="s0">painter.mrt((snowFamily.get(idx - </span><span class="s3">1</span><span class="s0">).width()) / </span><span class="s3">2.0</span><span class="s0">);</span>
+                <span class="s0">painter.mrt(spacing);</span>
+                <span class="s0">painter.mrt((snowFamily.get(idx).width()) / </span><span class="s3">2.0</span><span class="s0">);</span>
+                <span class="s0">snowFamily.get(idx).paint(painter);</span>
+            <span class="s0">}</span>
+        <span class="s0">}</span>
+        <span class="s1">//Invariance</span>
+        <span class="s0">painter.moveTo(initialPosition);</span>
+    <span class="s0">}</span>
+
+    <span class="s1">//Infrastructure to get things to work</span>
+    <span class="s2">private static int </span><span class="s0">getNumber(String prompt) {</span>
+        <span class="s0">String nss = JOptionPane.showInputDialog(</span><span class="s2">null</span><span class="s0">,prompt+</span><span class="s4">&quot;?&quot;</span><span class="s0">);</span>
+        <span class="s0">Scanner scanner = </span><span class="s2">new </span><span class="s0">Scanner(nss);</span>
+        <span class="s2">return </span><span class="s0">scanner.nextInt();</span>
+    <span class="s0">}</span>
+    <span class="s1">//This is much more complex than it needs to be, but it works</span>
+    <span class="s2">private static </span><span class="s0">Color getColor(String prompt) {</span>
+        <span class="s2">boolean </span><span class="s0">i = </span><span class="s2">false</span><span class="s0">;</span>
+        <span class="s2">while </span><span class="s0">(i != </span><span class="s2">true</span><span class="s0">) {</span>
+            <span class="s0">String nss = JOptionPane.showInputDialog(</span><span class="s2">null</span><span class="s0">, prompt + </span><span class="s4">&quot;?&quot;</span><span class="s0">);</span>
+            <span class="s2">if </span><span class="s0">(nss.equalsIgnoreCase(</span><span class="s4">&quot;red&quot;</span><span class="s0">)) {</span>
+                <span class="s0">i = </span><span class="s2">true</span><span class="s0">;</span>
+                <span class="s2">return </span><span class="s0">Color.RED;</span>
+            <span class="s0">} </span><span class="s2">else if </span><span class="s0">(nss.equalsIgnoreCase(</span><span class="s4">&quot;orange&quot;</span><span class="s0">)) {</span>
+                <span class="s0">i = </span><span class="s2">true</span><span class="s0">;</span>
+                <span class="s2">return </span><span class="s0">Color.ORANGE;</span>
+            <span class="s0">} </span><span class="s2">else if </span><span class="s0">(nss.equalsIgnoreCase(</span><span class="s4">&quot;yellow&quot;</span><span class="s0">)) {</span>
+                <span class="s0">i = </span><span class="s2">true</span><span class="s0">;</span>
+                <span class="s2">return </span><span class="s0">Color.YELLOW;</span>
+            <span class="s0">} </span><span class="s2">else if </span><span class="s0">(nss.equalsIgnoreCase(</span><span class="s4">&quot;pink&quot;</span><span class="s0">)) {</span>
+                <span class="s0">i = </span><span class="s2">true</span><span class="s0">;</span>
+                <span class="s2">return </span><span class="s0">Color.PINK;</span>
+            <span class="s0">} </span><span class="s2">else if </span><span class="s0">(nss.equalsIgnoreCase(</span><span class="s4">&quot;magenta&quot;</span><span class="s0">)) {</span>
+                <span class="s0">i = </span><span class="s2">true</span><span class="s0">;</span>
+                <span class="s2">return </span><span class="s0">Color.MAGENTA;</span>
+            <span class="s0">} </span><span class="s2">else if </span><span class="s0">(nss.equalsIgnoreCase(</span><span class="s4">&quot;blue&quot;</span><span class="s0">)) {</span>
+                <span class="s0">i = </span><span class="s2">true</span><span class="s0">;</span>
+                <span class="s2">return </span><span class="s0">Color.BLUE;</span>
+            <span class="s0">} </span><span class="s2">else if </span><span class="s0">(nss.equalsIgnoreCase(</span><span class="s4">&quot;cyan&quot;</span><span class="s0">)) {</span>
+                <span class="s0">i = </span><span class="s2">true</span><span class="s0">;</span>
+                <span class="s2">return </span><span class="s0">Color.CYAN;</span>
+            <span class="s0">} </span><span class="s2">else if </span><span class="s0">(nss.equalsIgnoreCase(</span><span class="s4">&quot;green&quot;</span><span class="s0">)) {</span>
+                <span class="s0">i = </span><span class="s2">true</span><span class="s0">;</span>
+                <span class="s2">return </span><span class="s0">Color.GREEN;</span>
+            <span class="s0">} </span><span class="s2">else if </span><span class="s0">(nss.equalsIgnoreCase(</span><span class="s4">&quot;black&quot;</span><span class="s0">)) {</span>
+                <span class="s0">i = </span><span class="s2">true</span><span class="s0">;</span>
+                <span class="s2">return </span><span class="s0">Color.BLACK;</span>
+            <span class="s0">} </span><span class="s2">else if </span><span class="s0">(nss.equalsIgnoreCase(</span><span class="s4">&quot;dark gray&quot;</span><span class="s0">) | nss.equalsIgnoreCase(</span><span class="s4">&quot;dark grey&quot;</span><span class="s0">)) {</span>
+                <span class="s0">i = </span><span class="s2">true</span><span class="s0">;</span>
+                <span class="s2">return </span><span class="s0">Color.DARK_GRAY;</span>
+            <span class="s0">} </span><span class="s2">else if </span><span class="s0">(nss.equalsIgnoreCase(</span><span class="s4">&quot;grey&quot;</span><span class="s0">) | nss.equalsIgnoreCase(</span><span class="s4">&quot;gray&quot;</span><span class="s0">)) {</span>
+                <span class="s0">i = </span><span class="s2">true</span><span class="s0">;</span>
+                <span class="s2">return </span><span class="s0">Color.GRAY;</span>
+            <span class="s0">} </span><span class="s2">else if </span><span class="s0">(nss.equalsIgnoreCase(</span><span class="s4">&quot;white&quot;</span><span class="s0">)) {</span>
+                <span class="s0">i = </span><span class="s2">true</span><span class="s0">;</span>
+                <span class="s2">return </span><span class="s0">Color.WHITE;</span>
+            <span class="s0">} </span><span class="s2">else if </span><span class="s0">(nss.equalsIgnoreCase(</span><span class="s4">&quot;help&quot;</span><span class="s0">)) {</span>
+                <span class="s0">JOptionPane.showMessageDialog(</span><span class="s2">null</span><span class="s0">, </span><span class="s4">&quot;Valid commands are: &quot; </span><span class="s0">+</span>
+                        <span class="s4">&quot;red | orange | yellow | pink | magenta | blue | cyan | green | black | dark gray | grey | white | help&quot;</span><span class="s0">);</span>
+            <span class="s0">}</span>
+        <span class="s0">}</span>
+        <span class="s2">return </span><span class="s0">Color.WHITE;</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>

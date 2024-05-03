@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>Invention2.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #067d17;}
+.s4 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Invention2.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * Programming Challenge 4 Problem 7 Program
+ * THIS WILL NOT WORK ON OLDER VERSIONS OF OPENJDK SUCH AS JDK11!
+ * THE RANDOM FUNCTION ON OLDER VERSIONS DOESN'T ALLOW FOR A LOWER BOUND TO BE SET SO IT SHOWS UP AS NOT A VALID PEICE OF CODE!
+ */</span>
+
+<span class="s2">package </span><span class="s0">npw;</span>
+<span class="s2">import </span><span class="s0">java.awt.Color;</span>
+<span class="s2">import </span><span class="s0">javax.swing.SwingUtilities;</span>
+<span class="s2">import </span><span class="s0">painter.SPainter;</span>
+<span class="s2">import </span><span class="s0">shapes.SRectangle;</span>
+<span class="s2">import </span><span class="s0">java.util.Random;</span>
+
+<span class="s2">public class </span><span class="s0">Invention2 {</span>
+    <span class="s1">//Draw Code</span>
+    <span class="s2">private void </span><span class="s0">paintTheImage() {</span>
+        <span class="s0">SPainter jill = </span><span class="s2">new </span><span class="s0">SPainter(</span><span class="s3">&quot;Invention2&quot;</span><span class="s0">, </span><span class="s4">1000</span><span class="s0">, </span><span class="s4">1000</span><span class="s0">);</span>
+        <span class="s0">jill.paintFrame(</span><span class="s2">new </span><span class="s0">Color(</span><span class="s4">235</span><span class="s0">,</span><span class="s4">235</span><span class="s0">,</span><span class="s4">235</span><span class="s0">), </span><span class="s4">500</span><span class="s0">);</span>
+        <span class="s0">Random random = </span><span class="s2">new </span><span class="s0">Random();</span>
+        <span class="s2">int </span><span class="s0">recNum = random.nextInt(</span><span class="s4">150</span><span class="s0">, </span><span class="s4">301</span><span class="s0">);</span>
+        <span class="s0">paintRectangles(jill, recNum);</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private void </span><span class="s0">paintRectangles(SPainter jill, </span><span class="s2">int </span><span class="s0">recNum) {</span>
+        <span class="s2">int </span><span class="s0">i = </span><span class="s4">1</span><span class="s0">;</span>
+        <span class="s2">while</span><span class="s0">(i &lt;= recNum) {</span>
+            <span class="s0">paintOneRectangle(jill);</span>
+            <span class="s0">++i;</span>
+        <span class="s0">}</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private void </span><span class="s0">paintOneRectangle(SPainter jill) {</span>
+        <span class="s0">jill.move();</span>
+
+        <span class="s0">Random rgen = </span><span class="s2">new </span><span class="s0">Random();</span>
+
+        <span class="s2">double </span><span class="s0">height = rgen.nextDouble(</span><span class="s4">10</span><span class="s0">, </span><span class="s4">151</span><span class="s0">);</span>
+        <span class="s2">double </span><span class="s0">width = rgen.nextDouble(</span><span class="s4">10</span><span class="s0">, </span><span class="s4">151</span><span class="s0">);</span>
+        <span class="s0">SRectangle rectangle = </span><span class="s2">new </span><span class="s0">SRectangle(height, width);</span>
+
+        <span class="s2">int </span><span class="s0">heading = rgen.nextInt(</span><span class="s4">0</span><span class="s0">, </span><span class="s4">360</span><span class="s0">);</span>
+        <span class="s0">jill.setHeading(heading);</span>
+
+        <span class="s0">jill.setColor(randomColor());</span>
+        <span class="s0">jill.paint(rectangle);</span>
+        <span class="s2">int </span><span class="s0">r = rgen.nextInt(</span><span class="s4">2</span><span class="s0">, </span><span class="s4">4</span><span class="s0">);</span>
+        <span class="s2">if </span><span class="s0">(r % </span><span class="s4">2 </span><span class="s0">== </span><span class="s4">0</span><span class="s0">) {</span>
+            <span class="s0">jill.setColor(Color.BLACK);</span>
+            <span class="s0">jill.draw(rectangle);</span>
+        <span class="s0">} </span><span class="s2">else </span><span class="s0">{</span>
+            <span class="s0">jill.setColor(Color.WHITE);</span>
+            <span class="s0">jill.draw(rectangle);</span>
+        <span class="s0">}</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static </span><span class="s0">Color randomColor() {</span>
+        <span class="s0">Random rgen = </span><span class="s2">new </span><span class="s0">Random();</span>
+        <span class="s2">int </span><span class="s0">r = rgen.nextInt(</span><span class="s4">256</span><span class="s0">);</span>
+        <span class="s2">int </span><span class="s0">g = rgen.nextInt(</span><span class="s4">256</span><span class="s0">);</span>
+        <span class="s2">int </span><span class="s0">b = rgen.nextInt(</span><span class="s4">256</span><span class="s0">);</span>
+        <span class="s2">return new </span><span class="s0">Color(r, g, b);</span>
+    <span class="s0">}</span>
+
+    <span class="s1">//Required Infrastructure</span>
+    <span class="s2">public </span><span class="s0">Invention2() {paintTheImage();}</span>
+    <span class="s2">public static void </span><span class="s0">main(String[] args) {</span>
+        <span class="s0">SwingUtilities.invokeLater(</span><span class="s2">new </span><span class="s0">Runnable() {</span>
+            <span class="s0">@Override</span>
+            <span class="s2">public void </span><span class="s0">run() {</span><span class="s2">new </span><span class="s0">Invention2();}</span>
+        <span class="s0">});</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+
+</pre>
+</body>
+</html>

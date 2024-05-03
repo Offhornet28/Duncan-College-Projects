@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>HirstDots.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #067d17;}
+.s4 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+HirstDots.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * A program to paint, centered on the canvas, a circle of randomly colored, dots, 
+ * That are spaced the value of its radius apart 
+ */</span>
+
+<span class="s2">package </span><span class="s0">npw;</span>
+<span class="s2">import </span><span class="s0">painter.SPainter;</span>
+<span class="s2">import </span><span class="s0">shapes.SCircle;</span>
+<span class="s2">import </span><span class="s0">java.awt.Color;</span>
+<span class="s2">import </span><span class="s0">javax.swing.SwingUtilities;</span>
+<span class="s2">import </span><span class="s0">java.util.Random;</span>
+<span class="s2">import </span><span class="s0">java.util.Scanner;</span>
+<span class="s2">import </span><span class="s0">javax.swing.JOptionPane;</span>
+
+<span class="s2">public class </span><span class="s0">HirstDots {</span>
+    <span class="s2">private void </span><span class="s0">paintTheImage() {</span>
+        <span class="s1">//get input info</span>
+        <span class="s2">int </span><span class="s0">radius = getNumber(</span><span class="s3">&quot;circle radius&quot;</span><span class="s0">);</span>
+        <span class="s2">int </span><span class="s0">diameter = getNumber(</span><span class="s3">&quot;dot diameter&quot;</span><span class="s0">);</span>
+        <span class="s1">//create painter</span>
+        <span class="s0">SPainter jill = </span><span class="s2">new </span><span class="s0">SPainter(</span><span class="s3">&quot;Simple Dots&quot;</span><span class="s0">, radius*</span><span class="s4">2 </span><span class="s0">+ </span><span class="s4">50</span><span class="s0">, radius*</span><span class="s4">2 </span><span class="s0">+ </span><span class="s4">50</span><span class="s0">);</span>
+        <span class="s0">jill.setBrushWidth(</span><span class="s4">3</span><span class="s0">);</span>
+        <span class="s0">SCircle circle = </span><span class="s2">new </span><span class="s0">SCircle(radius);</span>
+        <span class="s0">SCircle dot = </span><span class="s2">new </span><span class="s0">SCircle((</span><span class="s2">double</span><span class="s0">)diameter / </span><span class="s4">2</span><span class="s0">);</span>
+        <span class="s1">//paint the dots</span>
+        <span class="s0">paintCircleOfDots(jill, circle, dot);</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private void </span><span class="s0">paintCircleOfDots(SPainter jill, SCircle circle, SCircle dot) {</span>
+        <span class="s1">//paint the circle of dots</span>
+        <span class="s2">double </span><span class="s0">howFarToMove = </span><span class="s4">0</span><span class="s0">;</span>
+        <span class="s2">while </span><span class="s0">(howFarToMove &lt; circle.radius()) {</span>
+            <span class="s2">double </span><span class="s0">chord = chordLength(howFarToMove, circle);</span>
+            <span class="s2">int </span><span class="s0">dots = dotsOnLineCount(chord, dot.diameter());</span>
+            <span class="s2">if </span><span class="s0">(howFarToMove == </span><span class="s4">0</span><span class="s0">) {</span>
+                <span class="s0">paintRow(jill, dot, dots);</span>
+            <span class="s0">} </span><span class="s2">else </span><span class="s0">{</span>
+                <span class="s1">//Invariance Moment</span>
+                <span class="s0">jill.mfd(howFarToMove);</span>
+                <span class="s0">paintRow(jill, dot, dots);</span>
+                <span class="s0">jill.mbk(howFarToMove * </span><span class="s4">2</span><span class="s0">);</span>
+                <span class="s0">paintRow(jill, dot, dots);</span>
+                <span class="s0">jill.mfd(howFarToMove);</span>
+            <span class="s0">}</span>
+            <span class="s0">howFarToMove = howFarToMove + dot.diameter();</span>
+        <span class="s0">}</span>
+    <span class="s0">}</span>
+    <span class="s1">//Assumes the painter is at the center of the row to paint, facing right</span>
+    <span class="s2">private void </span><span class="s0">paintRow(SPainter jill, SCircle dot, </span><span class="s2">int </span><span class="s0">dotsToPaint) {</span>
+        <span class="s1">//turn right to start painting the row</span>
+        <span class="s0">jill.tr();</span>
+        <span class="s1">//move backward 1/2 of the length we're painting to get ready to paint the row</span>
+        <span class="s2">double </span><span class="s0">centerOffset = ((dotsToPaint * dot.diameter()) / </span><span class="s4">2</span><span class="s0">) - (dot.diameter() / </span><span class="s4">2</span><span class="s0">);</span>
+        <span class="s0">jill.mbk(centerOffset);</span>
+        <span class="s1">//paint the row of dots</span>
+        <span class="s2">int </span><span class="s0">painted = </span><span class="s4">0</span><span class="s0">;</span>
+        <span class="s2">while </span><span class="s0">(painted &lt; dotsToPaint){</span>
+            <span class="s0">paintOneDot(jill, dot);</span>
+            <span class="s0">jill.mfd(dot.diameter());</span>
+            <span class="s0">painted = painted + </span><span class="s4">1</span><span class="s0">;</span>
+        <span class="s0">}</span>
+        <span class="s1">//Invariance Moment</span>
+        <span class="s0">jill.mbk(centerOffset + dot.diameter());</span>
+        <span class="s0">jill.tl();</span>
+    <span class="s0">}</span>
+    <span class="s2">private void </span><span class="s0">paintOneDot(SPainter jill, SCircle dot) {</span>
+        <span class="s0">dot.s2();</span>
+        <span class="s0">jill.setColor(randomColor());</span>
+        <span class="s0">jill.paint(dot);</span>
+        <span class="s0">dot.x2();</span>
+    <span class="s0">}</span>
+    <span class="s2">private static int </span><span class="s0">dotsOnLineCount(</span><span class="s2">double </span><span class="s0">lineLength, </span><span class="s2">double </span><span class="s0">diameterLength) {</span>
+        <span class="s1">//calculates the number of dots in a row</span>
+        <span class="s2">int </span><span class="s0">dots = ((</span><span class="s2">int</span><span class="s0">)Math.ceil( (lineLength - diameterLength) / diameterLength ) + </span><span class="s4">1</span><span class="s0">);</span>
+        <span class="s2">return </span><span class="s0">dots;</span>
+    <span class="s0">}</span>
+    <span class="s2">private double </span><span class="s0">chordLength(</span><span class="s2">double </span><span class="s0">yOffset, SCircle circle) {</span>
+        <span class="s1">//gets the sqrt of the radius^2 and subtracts in from howFarToMove^2</span>
+        <span class="s2">double </span><span class="s0">xLength = Math.sqrt(Math.pow(circle.radius(), </span><span class="s4">2</span><span class="s0">) - Math.pow(yOffset, </span><span class="s4">2</span><span class="s0">));</span>
+        <span class="s2">double </span><span class="s0">chordLength = xLength * </span><span class="s4">2</span><span class="s0">;</span>
+        <span class="s2">return </span><span class="s0">chordLength;</span>
+    <span class="s0">}</span>
+
+    <span class="s2">private static int </span><span class="s0">getNumber(String prompt) {</span>
+        <span class="s0">String nss = JOptionPane.showInputDialog(</span><span class="s2">null</span><span class="s0">,prompt+</span><span class="s3">&quot;?&quot;</span><span class="s0">);</span>
+        <span class="s0">Scanner scanner = </span><span class="s2">new </span><span class="s0">Scanner(nss);</span>
+        <span class="s2">return </span><span class="s0">scanner.nextInt();</span>
+    <span class="s0">}</span>
+    <span class="s2">private static </span><span class="s0">Color randomColor() {</span>
+        <span class="s0">Random rgen = </span><span class="s2">new </span><span class="s0">Random();</span>
+        <span class="s2">int </span><span class="s0">r = rgen.nextInt(</span><span class="s4">256</span><span class="s0">);</span>
+        <span class="s2">int </span><span class="s0">g = rgen.nextInt(</span><span class="s4">256</span><span class="s0">);</span>
+        <span class="s2">int </span><span class="s0">b = rgen.nextInt(</span><span class="s4">256</span><span class="s0">);</span>
+        <span class="s2">return new </span><span class="s0">Color(r,g,b);</span>
+    <span class="s0">}</span>
+
+    <span class="s1">//Required Infrastructure</span>
+    <span class="s2">public </span><span class="s0">HirstDots() {</span>
+        <span class="s0">paintTheImage();</span>
+    <span class="s0">}</span>
+    <span class="s2">public static void </span><span class="s0">main(String[] args) {</span>
+        <span class="s0">SwingUtilities.invokeLater(</span><span class="s2">new </span><span class="s0">Runnable() {</span>
+            <span class="s0">@Override</span>
+            <span class="s2">public void </span><span class="s0">run() { </span><span class="s2">new </span><span class="s0">HirstDots(); }</span>
+        <span class="s0">});</span>
+    <span class="s0">}</span>
+<span class="s0">}</span></pre>
+</body>
+</html>

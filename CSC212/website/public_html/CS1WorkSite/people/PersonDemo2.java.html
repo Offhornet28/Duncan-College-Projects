@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>PersonDemo2.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #080808;}
+.s1 { color: #8c8c8c; font-style: italic;}
+.s2 { color: #0033b3;}
+.s3 { color: #1750eb;}
+.s4 { color: #067d17;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+PersonDemo2.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">/* 
+ * PersonDemo2 is a simple program to create and textually display Person objects in an array. 
+ */</span>
+
+<span class="s2">package </span><span class="s0">people;</span>
+
+<span class="s2">public class </span><span class="s0">PersonDemo2 {</span>
+    <span class="s2">public static void </span><span class="s0">main(String[] args) {</span>
+        <span class="s1">//array of six Person objects</span>
+        <span class="s0">Person[] people = </span><span class="s2">new </span><span class="s0">Person[</span><span class="s3">6</span><span class="s0">];</span>
+        <span class="s0">people[</span><span class="s3">0</span><span class="s0">] = </span><span class="s2">new </span><span class="s0">Person(</span><span class="s4">&quot;Bob Dylan&quot;</span><span class="s0">, </span><span class="s3">5</span><span class="s0">, </span><span class="s3">24</span><span class="s0">, </span><span class="s3">1941</span><span class="s0">);</span>
+        <span class="s0">people[</span><span class="s3">1</span><span class="s0">] = </span><span class="s2">new </span><span class="s0">Person(</span><span class="s4">&quot;Noomi Rapace&quot;</span><span class="s0">, </span><span class="s3">12</span><span class="s0">, </span><span class="s3">28</span><span class="s0">, </span><span class="s3">1974</span><span class="s0">);</span>
+        <span class="s0">people[</span><span class="s3">2</span><span class="s0">] = </span><span class="s2">new </span><span class="s0">Person(</span><span class="s4">&quot;Pharrell Williams&quot;</span><span class="s0">, </span><span class="s3">4</span><span class="s0">, </span><span class="s3">5</span><span class="s0">, </span><span class="s3">1973</span><span class="s0">);</span>
+        <span class="s0">people[</span><span class="s3">3</span><span class="s0">] = </span><span class="s2">new </span><span class="s0">Person(</span><span class="s4">&quot;Frank Sinatra&quot;</span><span class="s0">, </span><span class="s3">12</span><span class="s0">, </span><span class="s3">12</span><span class="s0">, </span><span class="s3">1915</span><span class="s0">);</span>
+        <span class="s0">people[</span><span class="s3">4</span><span class="s0">] = </span><span class="s2">new </span><span class="s0">Person(</span><span class="s4">&quot;Diana Krall&quot;</span><span class="s0">, </span><span class="s3">11</span><span class="s0">, </span><span class="s3">16</span><span class="s0">, </span><span class="s3">1964</span><span class="s0">);</span>
+        <span class="s0">people[</span><span class="s3">5</span><span class="s0">] = </span><span class="s2">new </span><span class="s0">Person(</span><span class="s4">&quot;Duncan Zaug&quot;</span><span class="s0">, </span><span class="s3">6</span><span class="s0">, </span><span class="s3">19</span><span class="s0">, </span><span class="s3">2004</span><span class="s0">);</span>
+        <span class="s1">//for loop to display six Person objects</span>
+        <span class="s2">for</span><span class="s0">(Person p : people) {</span>
+            <span class="s0">System.out.println(p + </span><span class="s4">&quot; &quot; </span><span class="s0">+ p.initials() + </span><span class="s4">&quot; &quot; </span><span class="s0">+ p.isBoomer());</span>
+        <span class="s0">}</span>
+    <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>
