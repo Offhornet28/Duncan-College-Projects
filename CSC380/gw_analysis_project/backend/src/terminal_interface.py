@@ -1,6 +1,6 @@
 import os
 os.environ['OPENBLAS_NUM_THREADS'] = '8'
-from graph_creator import read_original_data, read_2023_data, read_dr_barber_data, plot_data
+from graph_creator import read_original_data, read_2023_data, read_dr_barber_data, plot_data, read_dr_barber_data_v2
 from datetime import date
 from pdf_creator import create_pdf
 from fpdf import FPDF
@@ -14,43 +14,20 @@ def create_graphs(data, header_units, temp_directory):
 
 def prepare_to_create_pdf(data, header_units, lat_long_coordinates, temp_directory, file_format, input_file_name):
     string_list = []
-
-    # # Name
-    # name = input("Enter your name: ")
-    # string_list.append(name)
-    #
-    # # Doc Title
-    # title = input("Enter title: ")
-    # string_list.append(title)
-    #
-    # # Doc Abstract
-    # abstract = input("Enter abstract: ")
-    # string_list.append(abstract)
-
-    # Date
     today = date.today()
     today_string = today.strftime("%m/%d/%Y")
     string_list.append(today_string)
-
     pdf = FPDF()
-    create_pdf(pdf, 10, 200, 200, string_list, input_file_name, file_format, data, header_units, lat_long_coordinates,
-               temp_directory)
+    create_pdf(pdf, 10, 200, 200, string_list, input_file_name, file_format, data, header_units, lat_long_coordinates, temp_directory)
 
 
 def main():
-    # Format A /Users/tinaj/Downloads/Tolten_Profile/T3_1800_12132020_Artemis_Rerun.txt
-    # Format B /Users/tinaj/Downloads/NewYork_SUNYOswego_Formatted_v2/NewYork_SUNYOswego_231014_0837_Q2.txt
-    # Format C /Users/tinaj/Downloads/SUO052100_101323_id2.txt
-    # /Users/tinaj/Desktop/Test
-
     file_formats = [
+        "read_2023_data",  # Format B
+        "read_dr_barber_data_v2",  # Format D
         "read_dr_barber_data",  # Format C
-        "read_2023_data",       # Format B
         "read_original_data",   # Format A
     ]
-
-    # input_file_path = "/Users/tinaj/Downloads/SUO052100_101323_id2.txt" (Used by Justyce for testing)
-    #input_file_path = "/home/zaugb/docker-backend/src/profile"
     input_file_path = "/src/profile"
     radiosonde_files = os.listdir(input_file_path)
     if len(radiosonde_files) == 0:
@@ -66,9 +43,11 @@ def main():
         for i, cur_format in enumerate(file_formats):
             try:
                 if i == 0:
-                    data, header_units = read_dr_barber_data(input_file_name)
-                elif i == 1:
                     data, header_units = read_2023_data(input_file_name)
+                elif i == 1:
+                    data, header_units = read_dr_barber_data_v2(input_file_name)
+                elif i == 2:
+                    data, header_units = read_dr_barber_data(input_file_name)
                 else:
                     data, header_units = read_original_data(input_file_name)
 
@@ -91,27 +70,6 @@ def main():
 
             run = True
             while run:
-                """
-                user_action = input("What would you like to do? \n\n"
-                                    "(1) Create Customized Graph for PDF\n"
-                                    "(2) Generate PDF\n"
-                                    "Enter a number (1-2): ")
-
-                print("")
-
-                if user_action == "1":
-                    create_graphs(data, header_units, temp_directory)
-                elif user_action == "2":
-                    prepare_to_create_pdf(data, header_units, lat_long_coordinates, temp_directory, valid_format,
-                                          input_file_name)
-                    for file in os.listdir(temp_directory):
-                        file_path = os.path.join(temp_directory, file)
-                        os.remove(file_path)
-                    os.rmdir(temp_directory)
-                    run = False
-                else:
-                    print("Invalid request!")
-                """
                 prepare_to_create_pdf(data, header_units, lat_long_coordinates, temp_directory, valid_format, file_name)
                 for file in os.listdir(temp_directory):
                     file_path = os.path.join(temp_directory, file)

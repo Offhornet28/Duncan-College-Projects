@@ -1,0 +1,230 @@
+body {
+    width: 100%;
+    height: 40vh;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+  }
+  
+  .title_bar {
+    background-color: #163752;
+    width: 100%;
+    height: 18vh;
+    margin: 0;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+
+  .subtitle_bar {
+    background-color: #163752;
+    width: 100%;
+    height: 120px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  
+  .title_text {
+    color: white;
+    font-family: "Lato", serif;
+    font-size: 50px;
+    font-weight: 100;
+    background-color: transparent;
+    padding-left: 2vh;
+    margin: 2vh;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* add shadow around title */
+  }
+  
+  .main_body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main_b {
+    display: flex;
+    flex-direction: column;
+    padding-left: 4vh;
+    padding-right: 4vh;
+  }
+  
+  .author_block {
+    display: flex;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+    background-color: rgb(232, 232, 232);
+    border: #2d3748;
+    border-radius: 1px;
+    border-style: solid;
+    align-content: center;
+    align-items: center;
+  }
+
+  .author_b {
+    display: flex;
+    padding-top: 8vh;
+    padding-bottom: 8vh;
+    background-color: rgb(232, 232, 232);
+    border: #2d3748;
+    border-radius: 1px;
+    border-style: solid;
+  }
+  
+  .image_container {
+    width: 4vh;
+    height: 4vh;
+  }
+  
+  .image_holder {
+    display: flex;
+    align-items: center;
+  }
+  
+  .image_template {
+    width: 10vh;
+    height: auto;
+    margin-left: 4vh;
+    border-radius: 50%;
+    box-shadow: 4px 4px 14px 14px #163752;
+  }
+  
+  .author_text_block {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+    padding-bottom: 2vh;
+    padding-left: 6vh;
+    padding-right: 0;
+    margin: 0;
+  }
+
+  .author_text_b {
+    display: flex;
+    flex-direction: column;
+    padding: center;
+    margin: 0;
+  }
+  
+  .author_name {
+    color: #2d3748;
+    font-size: 5vh;
+    padding-top: 2vh;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .author_n {
+    color: #ffffff;
+    font-size: 5vh;
+    padding-top: 2vh;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .grade_level_text {
+    color: #2d3748;
+    font-size: 2.2vh;
+    padding-top: 0.75vh;
+    padding-bottom: 0;
+    padding-left: 0.5vh;
+    padding-right: 0;
+    margin: 0;
+  }
+  
+  .about_me_text {
+    font-size: 2.2vh;
+    color: #2d3748;
+    padding-top: 1vh;
+    padding-bottom: 0;
+    padding-left: 0.5vh;
+    padding-right: 0;
+    margin: 0;
+    word-wrap: break-word;
+    width: 83vh;
+  }
+  
+  .visit_website_text {
+    font-size: 2.2vh;
+    padding-top: 1vh;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    color: #2d3748;
+  }
+  
+  .contact_me_text {
+    font-size: 2.2vh;
+    padding-top: 1vh;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    color: #2d3748;
+  }
+
+  .sidebar-logo {
+    width: 300px;
+    height: auto;
+    margin-bottom: -80px; /* space below the logo */
+    margin-top: -105px;
+  }
+
+  .osw-logo {
+    width: 200px;
+    height: auto;
+    /* margin-bottom: -80px;
+    margin-top: -105px; */
+    margin-left: 100px;
+  }
+
+  .ologo {
+    width: 200px;
+    height: auto;
+    /* margin-bottom: -80px;
+    margin-top: -105px; */
+    margin-left: 500px;
+  }
+
+  .file1-img{
+  width: 1650px;
+  margin-left: -30px;
+  }
+
+  .file2-img{
+    width: 1400px;
+    margin-left: 110px;
+    }
+
+    .troubleshoot-txt {
+      color: #2d3748;
+      font-size: 4vh;
+      padding: 1vh 40px;
+      margin: 0;
+      word-wrap: break-word;
+      background-color: rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      border-radius: 5px;
+  }
+  
+  .author_pair {
+    display: flex; /* side by side */
+    justify-content: center;
+    width: 100%;
+  }
+
+  .ext {
+    font-size: 4vh;
+    color: #2d3748;
+    padding-top: 1vh;
+    padding-bottom: 0;
+    padding-left: 50vh;
+    padding-right: 0;
+    margin: 0;
+    word-wrap: break-word;
+    width: 83vh;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+  }

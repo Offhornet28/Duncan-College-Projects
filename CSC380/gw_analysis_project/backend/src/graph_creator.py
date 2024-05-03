@@ -113,14 +113,13 @@ def display_us_lat_long_map(lat_long_data, x, temp_directory):
     ax.gridlines(draw_labels=True)
 
     # Set extent to the United States
-    if x == "read_original_data":
+    if x == "read_original_data" or x == "read_2023_data":
         ax.set_extent([smallest_long - 5, largest_long + 5, smallest_lat - 5, largest_lat + 5], crs=ccrs.PlateCarree())
     else:
         ax.set_extent([smallest_lat - 5, largest_lat + 5, smallest_long - 5, largest_long + 5], crs=ccrs.PlateCarree())
 
     # Add some context (coastlines, land, ocean, rivers)
     ax.coastlines()
-    #cartopy.config["data_dir"] = '/home/zaugb/docker-backend/src/cartopy'
     cartopy.config["data_dir"] = '/src/cartopy'
     ax.add_feature(cartopy.feature.LAND)
     ax.add_feature(cartopy.feature.OCEAN)
@@ -130,10 +129,14 @@ def display_us_lat_long_map(lat_long_data, x, temp_directory):
     ax.add_feature(cartopy.feature.STATES)
 
     # add_cities(ax, lat_long_data)
-    for (lat, lon) in lat_long_data:
-        ax.plot(lon, lat, 'o', markersize=1, color='purple', transform=ccrs.PlateCarree())
+    if x == "read_2023_data":
+        for (lat, lon) in lat_long_data:
+            ax.plot(lat, lon, 'o', markersize=1, color='purple', transform=ccrs.PlateCarree())
+    else:
+        for (lat, lon) in lat_long_data:
+            ax.plot(lon, lat, 'o', markersize=1, color='purple', transform=ccrs.PlateCarree())
 
-    plt.title('Weather Balloon Path')
+    plt.title('Weather Balloon Path', y=1.05)
 
     # Add description below the plot
     description = "Figure Description: This graph displays the weather balloon path \n " \
@@ -146,46 +149,66 @@ def display_us_lat_long_map(lat_long_data, x, temp_directory):
 
 
 def read_original_data(file_path):
+    """
+    Reads and processes original data into Lists
+    :param file_path: The file path to the original data .txt file
+    :type lat_long_data: String
+    """
 
+    # Create Variable names for each column of data
     variables = [
         "Time", "P", "T", "Hu", "Ws", "Wd", "Long.", "Lat.",
         "Alt", "Geopot", "MRI", "RI", "Dewp.", "Virt. Temp", "Rs",
         "Elevation", "Azimuth", "Range", "D"
     ]
 
+    # Create unit names for each column of data
     units = [
         "sec", "hPa", "°C", "%", "m/s", "°", "°", "°",
         "km", "m", "", "", "m/s",
         "°", "°", "m", "kg/m3"
     ]
 
+    # Creates dictionary where each key is a variable name and the value is an empty list
     data = {variable: [] for variable in variables}
+
+    # Creates dictionary where each key is a variable name and each value is a unity
     header_units = dict(zip(variables, units))
 
+    # Opens File and reads lines
     with open(file_path, 'r', encoding='ISO-8859-1') as file:
         lines = file.readlines()
 
+    # Iterates though each line until the word "profile data" is found
     start_index = 0
     for i, line in enumerate(lines):
         if "Profile Data:" in line:
             start_index = i + 3
             break
 
+    # List of invalid_values
     invalid_values = {"999999", "1000002", "-", "--", "999999.0", "999999.00", "999999.000", "-9999.9"}
-    temp_altitudes = []  # Keep track of altitudes to check the decreasing trend
+
+    # Keep track of altitudes to check the decreasing trend
+    temp_altitudes = []
+
     for line in lines[start_index:]:
         if not line.strip():
             continue  # Skip empty lines
 
+        # Gets the value of the line without any trailing whitespaces
         values = line.strip().split()
 
+        # Skips any invalid values or periods
         if any(val in invalid_values or val.strip('.') in invalid_values for val in values):
             continue
-
         if len(values) < len(variables):
             continue
 
+        # List to store processed values
         processed_values = []
+
+        # Iterates through values
         for i, value in enumerate(values):
             try:
                 var = variables[i]
@@ -206,27 +229,34 @@ def read_original_data(file_path):
             for i, var in enumerate(variables):
                 data[var].append(processed_values[i])
 
+    # Returns data and header_units dictionary's
     return data, header_units
 
 
 def save_to_directory(plt, directory):
+    """
+    Saves plotted graph to a given directory as a .png file
+    :param plt: The graph you want to save
+    :type plt: Graph
+    :param directory: The directory you want the graph saved to
+    :type directory: String
+    """
 
     # Generate a unique ID for each graph to avoid overriding
     file_id = str(uuid.uuid4())
 
+    #Saves plotted graph to a given directory as a .png file
     plt.savefig(os.path.join(directory, file_id + ".png"))
 
 
 def read_2023_data(file_path):
     variables = [
-        "UTC", "Long.", "Lat.",
-        "P", "T", "Hu", "Ws", "Wd", "Alt",
-        "D", "Rs"
+        "UTC", "Lat.", "Long.", "P", "T", "Hu", "Ws", "Wd", "Alt", "D", "Rs"
     ]
 
     units = [
         "HH:mm:ss", "°", "°", "hPa", "°C", "%", "m/s", "°",
-        "m", "kg/m3", "m/s"
+        "km", "kg/m3", "m/s"
     ]
 
     data = {variable: [] for variable in variables}
@@ -237,10 +267,11 @@ def read_2023_data(file_path):
 
     start_index = 0
     for i, line in enumerate(lines):
-        start_index = i + 5
+        start_index = i + 4
         break
 
-    invalid_values = {"999999", "1000002", "-", "--", "999999.0", "999999.00", "-9999.9"}
+    invalid_values = {"999999", "1000002", "-", "--", "999999.0", "-999.9", "999999.00", "-9999.9"}
+    essential_vars = {"UTC", "Long", "Lat", "P", "T", "Ws", "Wd", "Alt"}
 
     temp_altitudes = []  # Keep track of altitudes to check the decreasing trend
     for line in lines[start_index:]:
@@ -249,15 +280,23 @@ def read_2023_data(file_path):
 
         values = line.strip().split()
 
+        if len(values) < len(essential_vars):  # Ensure enough values are present
+            continue
+
+        # Check only essential variables for invalid values
+        if any(values[i] in invalid_values or values[i].strip('.') in invalid_values for i, var in enumerate(variables)
+               if var in essential_vars):
+            continue  # Skip this line if any essential value is invalid
+
         processed_values = [None] * len(variables)
         for i, value in enumerate(values):
             if i >= len(variables):
                 break
 
             if value in invalid_values or value.strip('.') in invalid_values:
+                processed_values[i] = None
                 continue
 
-            #try:
             var = variables[i]
             if var == "UTC":
                 processed_values[i] = datetime.strptime(value, "%H:%M:%S").time()
@@ -277,10 +316,11 @@ def read_2023_data(file_path):
         if is_decreasing(temp_altitudes):
             break  # Exit the loop if decreasing trend is found
 
-        # Add processed values to data
-        for i, var in enumerate(variables):
-            if processed_values[i] is not None:  # Add only if value was successfully processed
-                data[var].append(processed_values[i])
+        # Add processed values to data only if essential variables are valid
+        if all(processed_values[i] is not None for i, var in enumerate(variables) if var in essential_vars):
+            for i, var in enumerate(variables):
+                if processed_values[i] is not None:  # Add only if value was successfully processed
+                    data[var].append(processed_values[i])
 
     return data, header_units
 
@@ -288,29 +328,28 @@ def read_2023_data(file_path):
 def read_dr_barber_data(file_path):
     variables = [
         "Time", "UTC", "P", "T", "Hu", "Ws", "Wd", "Long.", "Lat.",
-        "Alt", "Geopot", "RI", "Dewp.", "Rs", "Elevation", "Azimuth", "Range", "D"
+        "Alt", "Geopot", "RI", "Dewp.", "Elevation", "Azimuth", "Range", "D"
     ]
 
     units = [
         "sec", "HH:mm:ss", "hPa", "°C", "%", "m/s", "°", "°", "°",
-        "km", "m", "", "°C", "m/s", "°", "m", "kg/m3"
+        "km", "m", "", "°C", "°", "°", "m", "kg/m3"
     ]
 
     data = {variable: [] for variable in variables}
     header_units = dict(zip(variables, units))
-    last_valid_value = {var: None for var in ["P"]}
 
     with open(file_path, 'r', encoding='ISO-8859-1') as file:
         lines = file.readlines()
 
-    # Adjust the start_index based on "Profile Data:"
     start_index = 0
     for i, line in enumerate(lines):
         if "Profile Data:" in line:
             start_index = i + 5
             break
 
-    invalid_values = {"999999", "1000002", "-", "--", "999999.0", "999999.00", "-9999.9"}
+    invalid_values = {"999999", "1000002", "-", "--", "999999.0", "999999.00", "-999.9", "-9999.9"}
+    essential_vars = {"Time", "UTC", "P", "T", "Ws", "Wd", "Long.", "Lat.", "Alt"}
 
     temp_altitudes = []  # Keep track of altitudes to check the decreasing trend
     for line in lines[start_index:]:
@@ -319,16 +358,25 @@ def read_dr_barber_data(file_path):
 
         values = line.strip().split()
 
+        # Ensure enough values are present for all variables
+        if len(values) < len(variables):
+            continue
+
+        # Check only essential variables for invalid values
+        essential_indices = [variables.index(var) for var in essential_vars if var in variables]
+        if any(values[i] in invalid_values or values[i].strip('.') in invalid_values for i in essential_indices):
+            continue  # Skip this line if any essential value is invalid
+
         processed_values = [None] * len(variables)
         for i, value in enumerate(values):
             if i >= len(variables):
                 break
 
+            var = variables[i]
             if value in invalid_values or value.strip('.') in invalid_values:
+                processed_values[i] = None
                 continue
 
-            #try:
-            var = variables[i]
             if var == "UTC":
                 processed_values[i] = datetime.strptime(value, "%H:%M:%S").time()
             elif var == "Alt":
@@ -347,10 +395,90 @@ def read_dr_barber_data(file_path):
         if is_decreasing(temp_altitudes):
             break  # Exit the loop if decreasing trend is found
 
-        # Add processed values to data
-        for i, var in enumerate(variables):
-            if processed_values[i] is not None:  # Add only if value was successfully processed
-                data[var].append(processed_values[i])
+        # Add processed values to data only if essential variables are valid
+        if all(processed_values[i] is not None for i in essential_indices):
+            for i, var in enumerate(variables):
+                if processed_values[i] is not None:  # Add only if value was successfully processed
+                    data[var].append(processed_values[i])
+
+    return data, header_units
+
+
+def read_dr_barber_data_v2(file_path):
+    variables = [
+        "Time", "UTC", "P", "T", "Hu", "Ws", "Wd", "Long.", "Lat.",
+        "Alt", "Geopot", "RI", "Dewp.", "Rs", "Elevation", "Azimuth", "Range", "D"
+    ]
+
+    units = [
+        "sec", "HH:mm:ss", "hPa", "°C", "%", "m/s", "°", "°", "°",
+        "km", "m", "", "°C", "m/s", "°", "°", "m", "kg/m3"
+    ]
+
+    data = {variable: [] for variable in variables}
+    header_units = dict(zip(variables, units))
+
+    with open(file_path, 'r', encoding='ISO-8859-1') as file:
+        lines = file.readlines()
+
+    start_index = 0
+    for i, line in enumerate(lines):
+        if "Profile Data:" in line:
+            start_index = i + 5
+            break
+
+    invalid_values = {"999999", "1000002", "-", "--", "999999.0", "999999.00", "-999.9", "-9999.9"}
+    essential_vars = {"Time", "UTC", "P", "T", "Ws", "Wd", "Long.", "Lat.", "Alt"}
+
+    temp_altitudes = []  # Keep track of altitudes to check the decreasing trend
+    for line in lines[start_index:]:
+        if not line.strip():
+            continue  # Skip empty lines
+
+        values = line.strip().split()
+
+        # Ensure enough values are present for all variables
+        if len(values) < len(variables):
+            continue
+
+        # Check only essential variables for invalid values
+        essential_indices = [variables.index(var) for var in essential_vars if var in variables]
+        if any(values[i] in invalid_values or values[i].strip('.') in invalid_values for i in essential_indices):
+            continue  # Skip this line if any essential value is invalid
+
+        processed_values = [None] * len(variables)
+        for i, value in enumerate(values):
+            if i >= len(variables):
+                break
+
+            var = variables[i]
+            if value in invalid_values or value.strip('.') in invalid_values:
+                processed_values[i] = None
+                continue
+
+            if var == "UTC":
+                processed_values[i] = datetime.strptime(value, "%H:%M:%S").time()
+            elif var == "Alt":
+                altitude = float(value) * 0.001  # Convert from meters to kilometers
+                processed_values[i] = altitude
+                temp_altitudes.append(altitude)  # Add to temp_altitudes for trend checking
+            else:
+                processed_values[i] = float(value)
+            """
+            except ValueError as e:
+                print(f"Error processing value {value} for variable {var}: {e}")
+                processed_values[i] = None
+            """
+
+        # Check for decreasing trend outside the values processing loop
+        if is_decreasing(temp_altitudes):
+            break  # Exit the loop if decreasing trend is found
+
+        # Add processed values to data only if essential variables are valid
+        if all(processed_values[i] is not None for i in essential_indices):
+            for i, var in enumerate(variables):
+                if processed_values[i] is not None:  # Add only if value was successfully processed
+                    data[var].append(processed_values[i])
 
     return data, header_units
 

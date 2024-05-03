@@ -1,6 +1,7 @@
+import os
+os.environ['OPENBLAS_NUM_THREADS'] = '2'
 from flask import Flask, request, send_from_directory, jsonify, render_template
 from werkzeug.utils import secure_filename
-import os
 import subprocess
 import glob
 
@@ -28,18 +29,39 @@ def clear_pdf_folder():
         os.remove(f)
 
 
+def clear_uploads_folder():
+    # clear all text files from uploads folder
+    files = glob.glob(os.path.join(app.config['UPLOAD_FOLDER'], '*.txt'))
+    for f in files:
+        os.remove(f)
+
+
 # upload file and run command for pdf
 def process_file(filepath):
-    filename = os.path.basename(filepath)
-    output_pdf = f"{os.path.splitext(filename)[0]}.pdf"
-    subprocess.run("./run_backend.sh", shell=True, check=True)
-    return output_pdf
+    try:
+        filename = os.path.basename(filepath)
+        output_pdf = f"{os.path.splitext(filename)[0]}.pdf"
+        subprocess.run("./run_backend.sh", shell=True, check=True)
+        return output_pdf
+    except Exception as e:
+        clear_uploads_folder()
+        return None
 
 
 # route for website
 @app.route('/')
 def index():
     return render_template('website.html')
+
+
+@app.route('/authors')
+def authors():
+    return render_template('authors.html')
+
+
+@app.route('/troubleshoot')
+def troubleshoot():
+    return render_template('troubleshoot.html')
 
 
 # route for file uploads
@@ -56,12 +78,15 @@ def upload_file():
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
         output_pdf = process_file(filepath)
-        return jsonify({"message": "File uploaded and processed successfully", "pdf": output_pdf}), 200
+        if output_pdf:
+            return jsonify({"message": "File uploaded and processed successfully", "pdf": output_pdf}), 200
+        else:
+            return jsonify({"error": "File could not be processed"}), 500
     else:
         return jsonify({"error": "Invalid file type"}), 400
 
 
-# route to get latest pdf
+# route to check /pdf and take latest pdf
 @app.route('/get_latest_pdf')
 def get_latest_pdf():
     try:

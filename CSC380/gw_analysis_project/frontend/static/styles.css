@@ -10,7 +10,7 @@ body, html {
     position: fixed;
     left: 0;
     top: 0;
-    width: 220px;
+    width: 250px;
     height: 100%;
     background-color: #163752;
     padding: 20px;
@@ -20,6 +20,14 @@ body, html {
     align-items: center; /* center horizontally */
     /* justify-content: center; center vertically */
     gap: 10px;
+    overflow: scroll;
+}
+
+.sidebar-logo {
+    width: 300px;
+    height: auto;
+    margin-bottom: -80px; /* space below the logo */
+    margin-top: -90px;
 }
 
 .content {
@@ -47,8 +55,8 @@ input[type="file"] {
 .button {
     display: flex;
     flex-direction: column; /* stack vertically */
-    align-items: center; /* center horizontally */
-    justify-content: center; /* center vertically */
+    align-items: center;
+    justify-content: center;
     gap: 5px; /* space between icon and text */
     cursor: pointer;
     padding: 10px;
@@ -63,7 +71,7 @@ input[type="file"] {
 }
 
 .button img {
-    width: 58px; /* icon size */
+    width: 55px; /* icon size */
     height: auto;
 }
 
@@ -76,6 +84,17 @@ input[type="file"] {
     background-color: #0056b3;
 }
 
+.button.author-button {
+    margin-top: 80px;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row; /* align side-by-side */
+    justify-content: space-between;
+    width: 100%; /* full width of sidebar */
+    gap: 10px; /* space between buttons */
+}
 
 
 

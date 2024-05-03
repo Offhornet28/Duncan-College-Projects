@@ -9,13 +9,20 @@ document.getElementById('fileUpload').addEventListener('change', function(e) {
     var formData = new FormData();  // create new FormData obj. to hold file data for sending
     formData.append('file', file);  // append selected file to FormData object under key 'file'
 
-    // Send POST request to server with file data to the /uploads endpoint
+    // show loading image
+    document.getElementById('loadingImage').style.display = 'block';
+
+    // send POST request to server with file data to the /uploads endpoint
     fetch('/uploads', {
         method: 'POST',
         body: formData
     })
     .then(response => response.json()) // parse JSON response from server
     .then(data => {
+
+        // hide loading image
+        document.getElementById('loadingImage').style.display = 'none';
+
         // check if server response includes pdf key, update PDF viewer & download
         if(data.pdf) {
             document.getElementById('pdfViewer').src = `/PDF/${data.pdf}`;  // set source of PDF viewer to uploaded PDF
@@ -23,10 +30,14 @@ document.getElementById('fileUpload').addEventListener('change', function(e) {
             console.log('File uploaded and processed: ', data.pdf);
         } else if(data.error) {
             console.error('Error:', data.error);  // log errors returned from server
+            alert(data.error);  // Show alert if there's an error
         }
     })
     .catch(error => {
+        // hide loading image
+        document.getElementById('loadingImage').style.display = 'none';
         console.error('Error:', error);  // catche & log errors during fetch operation
+        alert('File could not be parsed');  // error if request itself fails
     });
 });
 

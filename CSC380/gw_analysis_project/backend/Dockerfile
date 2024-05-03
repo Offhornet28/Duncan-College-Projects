@@ -83,10 +83,9 @@ RUN apt-get update && apt-get full-upgrade -y
 RUN sed -i 's/#PermitRootLogin prohibit-password/permitRootLogin yes/g' /etc/ssh/sshd_config
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 RUN sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication no/g' /etc/ssh/sshd_config
-RUN echo "balls\nballs" | passwd root
+RUN echo "{insert_ssh_password_here}\n{insert_ssh_password_here}" | passwd root
 
-#no exposed port
+#exposed port 22 to the local compose network
 EXPOSE 22
 #This is where we can execute code this is where we could call the main.py script or what not
 ENTRYPOINT service ssh restart && bash
-#CMD python3 terminal_interface.py

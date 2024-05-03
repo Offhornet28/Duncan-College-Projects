@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Why Isn't My File Being Parsed?</title>
+    <link rel="stylesheet" href="/static/newStyles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="title_bar">
+              <!-- logo -->
+              <img src="/static/Icons/Logo.png" alt="file1" class="sidebar-logo">
+      <h4 class="title_text">Why Isn't My File Being Parsed?</h4>
+    </div>
+    <div class="main_b">
+      <div class="author_b">
+        <div class="author_text_b">
+          <div class="subtitle_bar"> <h4 class="author_n">1. Check Radiosonde File Format</h4> </div>
+          <br>
+          <p class="about_me_text">
+            <h4 class="troubleshoot-txt">File Format 1</h4><br><br>
+            <div><img src="/static/Icons/file1.png" alt="file1" class="file1-img"></div>
+            <h4 class="troubleshoot-txt">Highlighted in green is the correct format for file format 1 where the radiosonde contains the words "Profile Data:", has the variable names in the first line below it, 
+              the units in the second line below it, and the data in the third line and onwards. The order of and the amount of variables does not matter since the program
+            will determine that dynamically. The variables that MUST be present however are Time "Time" (or time as "UTC" or "UTC Time"), Temperature "T", Wind Speed "Ws", Wind Direction "Wd", Longitude "Long.",
+            Latitude "Lat.", and Altitude "Alt". If your file contains these variables but with a different abbreviation, please change the abbreviation to the ones
+            stated in quotation marks in the previous sentence. </h4>
+          </p>
+        </div>
+      </div>
+    <div class="author_b">
+      <div class="author_text_b">
+        <br>
+        <p class="about_me_text">
+          <h4 class="troubleshoot-txt">File Format 2</h4><br><br>
+          <div><img src="/static/Icons/file2.png" alt="file2" class="file2-img"></div>
+          <h4 class="troubleshoot-txt">Highlighted in green is the correct format for file format 2 where the radiosonde contains the variable names in the first line 
+           and the data in the second line and onwards. The order of and the amount of variables does not matter since the program
+          will determine that dynamically. The variables that MUST be present however are Time "Time" (or time as "UTC"), Temperature "T", Wind Speed "Ws", Wind Direction "Wd", Longitude "Long.",
+          Latitude "Lat.", and Altitude "Alt". If your file contains these variables but with a different abbreviation, please change the abbreviation to the ones
+          stated in quotation marks in the previous sentence. </h4>
+        </p>
+      </div>
+    </div>
+      <div class="author_b">
+       <div class="author_text_b">
+        <div class="subtitle_bar"> <h4 class="author_n">2. Check Radiosonde Data</h4> </div>
+      <br>
+      <p class="about_me_text">
+        <h4 class="troubleshoot-txt">Common Data Issues</h4><br><br>
+        <h4 class="troubleshoot-txt">
+          - Radiosonde data that prematurely ended such as at 10~11km (the software requires troposphere and stratosphere 
+          data to calculate the tropopause and plot the graphs)
+          <br><br>
+          - The altitude decreases at unexpected points (the program checks if the weather balloon popped by parsing through altitude values and checking if they
+          are decreasing for at least 5 consecutive data points. The program stops parsing the file at that point to remove data collected while the radiosonde is falling).
+          <br><br>
+          - The radiosonde has invalid data symbols (the program currently supports these symbols for invalid data that should be skipped over: 
+          "999999", "1000002", "-", "--", "999999.0", "999999.00", "999999.000", '-999.9', and "-9999.9") </h4>
+      </p>
+      </div>
+      </div>
+    </div>
+      </body>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var links = document.querySelectorAll('body a');
+            links.forEach(function(link) {
+                link.setAttribute('target', '_blank');
+            });
+        });
+    </script>
+    </html>
+
+

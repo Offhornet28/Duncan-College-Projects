@@ -26,6 +26,8 @@
 pro runpro, debug = flag
 ; working directory setup
 cd, '..'
+; thread limiting
+CPU, TPOOL_NTHREADS = 8
 ;getting current working directory
 CD, Current=working_directory
 

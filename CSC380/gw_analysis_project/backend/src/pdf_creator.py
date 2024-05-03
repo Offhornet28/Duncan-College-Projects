@@ -19,29 +19,21 @@ def main_gdl(pdf, line_height, tropopause_altitude):
     # Initial Setup
     initial_directory = os.getcwd()
     # We have to change this to wherever the directory that holds the GDL code is.
-    #os.chdir('/home/zaugb/docker-backend/src/pro')
     os.chdir('/src/pro')
     debug = False
-
     # debug code
     if debug:
         path = os.getcwd()
         print("current working directory: " + path + "\n")
-
     # running the gdl code
     GDL.script("gw_eclipse_run.pro")
-
     # This code is for in case the GDL-Python interface module cannot be imported/used
     #gdl_shell_command = "gdl gw_eclipse_run.pro"
     #subprocess.run(gdl_shell_command, shell=True)
-
     # Getting the results of the GDL code
-    # file_path = "/Users/tinaj/Downloads/outfile.txt" (Used by Justyce for testing)
-    #file_path = "/home/zaugb/docker-backend/src/data/outfile.txt"
     file_path = "/src/data/outfile.txt"
     file = open(file_path, 'r')
     raw_gdl_results = file.read()
-
     # Troposphere Variables
     tropo_z_bottom = 0.0
     tropo_z_top = 0.0
@@ -55,7 +47,6 @@ def main_gdl(pdf, line_height, tropopause_altitude):
     tropo_kinetic_energy = 0.0
     tropo_intrinsic_frequency = 0.0
     tropo_coriolis_parameter = 0.0
-
     # Stratosphere Variables
     strato_z_bottom = 0.0
     strato_z_top = 0.0
@@ -69,12 +60,9 @@ def main_gdl(pdf, line_height, tropopause_altitude):
     strato_kinetic_energy = 0.0
     strato_intrinsic_frequency = 0.0
     strato_coriolis_parameter = 0.0
-
     # Output Flag (If not zero, throw an error)
     output_flag = 0
-
     print("")
-
     # Put results into Python
     line_number = 0
     for line in raw_gdl_results.split('\n'):
@@ -135,12 +123,10 @@ def main_gdl(pdf, line_height, tropopause_altitude):
         elif line_number == 29:
             strato_coriolis_parameter = float(line)
         line_number = line_number + 1
-
     # Close and remove the file
     file.close()
     os.remove(file_path)
     os.chdir(initial_directory)
-
     # Check for errors
     output_check = tropo_z_bottom + tropo_z_top + tropo_horizontal_wavelength + tropo_vertical_wavelength + \
                    tropo_mean_phase_propagation_direction + tropo_upward_propagation_fraction + \
@@ -150,10 +136,8 @@ def main_gdl(pdf, line_height, tropopause_altitude):
                    strato_mean_phase_propagation_direction + strato_upward_propagation_fraction + \
                    strato_zonal_momentum_flux + strato_meridional_momentum_flux + strato_potential_energy + \
                    strato_kinetic_energy + strato_intrinsic_frequency + strato_coriolis_parameter
-
     pdf.add_page()
     pdf.set_font("Courier", size=12)
-
     # Print results
     if output_check == 0.0 or output_flag != 0:
         i = 0
@@ -197,6 +181,7 @@ def main_gdl(pdf, line_height, tropopause_altitude):
             print("Kinetic energy (J/kg): ", strato_kinetic_energy)
             print("intrinsic frequency (s^-1): ", strato_intrinsic_frequency)
             print("coriolis parameter: ", strato_coriolis_parameter)
+
         #printing to pdf
         add_line_pdf(pdf, "Troposphere Data:", line_height, 0)
         add_line_pdf(pdf, "Zbot (Km):                                                     " + str(tropo_z_bottom), line_height, 10)
@@ -211,9 +196,7 @@ def main_gdl(pdf, line_height, tropopause_altitude):
         add_line_pdf(pdf, "Kinetic Energy (J/Kg):                                         " + str(tropo_kinetic_energy), line_height, 55)
         add_line_pdf(pdf, "Intrinsic Frequency (s^-1):                                    " + str(tropo_intrinsic_frequency), line_height, 60)
         add_line_pdf(pdf, "Coriolis Parameter (J/Kg):                                     " + str(tropo_coriolis_parameter), line_height, 65)
-
         center_add_line_pdf(pdf, f"The tropopause is at approximately {tropopause_altitude:.2f} km altitude.", line_height, 75)
-
         add_line_pdf(pdf, "Stratosphere Data:", line_height, 85)
         add_line_pdf(pdf, "Zbot (Km):                                                     " + str(strato_z_bottom), line_height, 95)
         add_line_pdf(pdf, "Ztop (Km):                                                     " + str(strato_z_top), line_height, 100)
@@ -227,7 +210,6 @@ def main_gdl(pdf, line_height, tropopause_altitude):
         add_line_pdf(pdf, "Kinetic Energy (J/Kg):                                         " + str(strato_kinetic_energy), line_height, 140)
         add_line_pdf(pdf, "Intrinsic Frequency (s^-1):                                    " + str(strato_intrinsic_frequency), line_height, 145)
         add_line_pdf(pdf, "Coriolis Parameter (J/Kg):                                     " + str(strato_coriolis_parameter), line_height, 150)
-
     # More debug code
     if debug:
         print("\nlines: ", line_number)
@@ -235,31 +217,97 @@ def main_gdl(pdf, line_height, tropopause_altitude):
 
 
 def add_line_pdf(pdf, text, line_height, offset):
+    """
+    Adds single line to the pdf
+    :param pdf: The pdf variable which the line will be added to
+    :type pdf: PDF
+    :param text: the line of text that you want to be added
+    :type text: string
+    :param line_height: Lines can be set to different height allowing you to change the spacing between lines
+    :type line_height: float
+    :param offset: Offset should be a persistent number you keep track of outside the function which specifies how far down the page the line should be printed
+    :type line_height: float
+    """
+
+    # Sets offset
     pdf.set_y(offset)
+    # Updates new offset for the next line
     offset += line_height
+    # Adds the new line to the left side of the document
     pdf.cell(200, line_height, txt=text, ln=True, align='L')
+    # Returns the updated value of offset so the next line will not be printed on top of this one
     return offset
 
 
 def center_add_line_pdf(pdf, text, line_height, offset):
+    """
+    Adds line to the center of the pdf
+    :param pdf: The pdf variable which the line will be added to
+    :type pdf: PDF
+    :param text: the line of text that you want to be added
+    :type text: string
+    :param line_height: Lines can be set to different height allowing you to change the spacing between lines
+    :type line_height: float
+    :param offset: Offset should be a persistent number you keep track of outside the function which specifies how far down the page the line should be printed
+    :type line_height: float
+    """
+
+    # Sets offset
     pdf.set_y(offset)
+    # Updates new offset for the next line
     offset += line_height
+    # Adds the new line to the center of the document
     pdf.cell(200, line_height, txt=text, ln=True, align='C')
+    # Returns the updated value of offset so the next line will not be printed on top of this one
     return offset
 
 
 def add_graph_to_pdf(pdf, graph_path, x_cord, y_cord, width, height):
+    """
+    Adds single graph to the pdf
+    :param pdf: The pdf variable which the line will be added to
+    :type pdf: PDF
+    :param graph_path: The path to the graph .png photo
+    :type graph_path: String
+    :param x_cord: The x_coordinate where the graph should be printed
+    :type x_cord: float
+    :param y_cord: The x_coordinate where the graph should be printed
+    :type y_cord: float
+    :param height: How tall the graph should be
+    :type height: float
+    :param width: How wide the graph should be
+    :type width: float
+    """
+
+    # Adds image to pdf
     pdf.image(graph_path, x=x_cord, y=y_cord, w=width, h=height, compress=False)
+    # Updates new Y_coordinate
     y_cord += height  # Corrected to add height instead of width - 10
+    # returns new Y_coordinate
     return y_cord
 
 
 def one_graph_per_page(pdf, image_width, image_height, temp_directory, tropopause_altitude, line_height):
-    files = os.listdir(temp_directory)
+    """
+    Prints all the graphs in a certain directory, one per page
+    :param pdf: The pdf variable which the line will be added to
+    :type pdf: PDF
+    :param image_width: The desired width of the image
+    :type image_width: float
+    :param image_height: The desired height of the image
+    :type image_height: float
+    :param temp_directory: The temporary directory where the .png images are being stored
+    :type temp_directory: String
+    :param tropopause_altitude: the altitude of the tropopause
+    :type tropopause_altitude: float
+    :param line_height: The desired line height
+    :type line_height: float
+    """
 
+    # Gathers the .png image files from the desired directory
+    files = os.listdir(temp_directory)
     # Sort files based on creation time
     sorted_files = sorted(files, key=lambda f: os.path.getctime(os.path.join(temp_directory, f)))
-
     # Loop through the directory
     for filename in sorted_files:
         filepath = os.path.join(temp_directory, filename)
@@ -276,12 +324,34 @@ def one_graph_per_page(pdf, image_width, image_height, temp_directory, tropopaus
     add_line_pdf(pdf, f"The tropopause is at approximately {tropopause_altitude:.2f} km altitude.", line_height, y_coordinate)
 
 
-def create_pdf(pdf, line_height, image_width, image_height, string_list, init_file_name, file_format, data,
-               header_units, lat_long_coordinates, temp_directory):
+def create_pdf(pdf, line_height, image_width, image_height, string_list, init_file_name, file_format, data, header_units, lat_long_coordinates, temp_directory):
+    """
+    Main script used for creating the pdf
+    :param pdf: The pdf variable which the line will be added to
+    :type pdf: PDF
+    :param image_width: The desired width of the image
+    :type image_width: float
+    :param image_height: The desired height of the image
+    :type image_height: float
+    :param temp_directory: The temporary directory where the .png images are being stored
+    :type temp_directory: String
+    :param line_height: The desired line height
+    :type line_height: float
+    :param string_list: A list of the strings that you want added to the pdf
+    :type string_list: List of Strings
+    :param init_file_name: The name you want the pdf file to be called
+    :type init_file_name: String
+    :param file_format: The desired file format
+    :type file_format: String
+    :param data: The array of weather data
+    :type data: array
+    :param header_units: The units that correspond with each column of data
+    :type header_units: array
+    :param lat_long_coordinates: The lat and long coordinates of the balloon
+    :type lat_long_coordinates: array
+    """
 
     # Get the requested directory to put all files in:
-    # pdf_directory = "/Users/tinaj/Desktop/pdfOutput" (Used by Justyce for testing)
-    # pdf_directory = "/home/zaugb/docker-backend/src/data"
     pdf_directory = "/src/data"
 
     pdf.add_page()
