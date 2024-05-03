@@ -1,0 +1,70 @@
+
+----------------------------------------Description----------------------------------------
+
+For the final category similarity metric we should compare the category section of the UserBusiness ex. {bar, sushi, hot_food}
+To the categories section of each business on the list ex: {bar, mexican, outside_venue, late-night, free_parking, hot_food}.
+
+----------------------------------------General Approach----------------------------------------
+
+Step 1: TF is automatically 1
+Step 2: Calculate the IDF of Each term in the UserBusiness
+Step 3: Find the TF-IDF Value of each Business by subtracting the IDF value from the TF value
+Step 4: Find the Maximum Value of the TF-IDF Array
+Step 5: Return the Business name from the Business at the Index number of the max TF-IDF Value
+
+----------------------------------------Notes----------------------------------------
+
+Need to remove the UserBusiness form the Dataset. This is so it doesn't get chosen and so the MaxValue index matches with the Business Array
+
+----------------------------------------Step 1----------------------------------------
+
+Set Constant TF Value To 1
+
+----------------------------------------Step 2----------------------------------------
+
+For each Business in the dataset we iterate through the UserBusiness Attributes(ex:bar) and add to a counter. Divide counter by total number of words
+
+----------------------------------------Step 3---------------------------------------
+
+The tf value of each word the second business would be:
+{bar, mexican, outside_venue, free_parking, hot_food}
+{1, 0, 0, 0, 1}
+
+Definitions:
+UserRestaurant - The restaurant the User Picks
+BestPick: The restaurant in the database which is most similar to the UserRestaurant
+Get the term frequency of each word
+
+
+Need to do:
+
+For each target word calculate the Term frequency. Then itterate throught the list one more time to figure out the similarity for each restraunt
+
+***We Could want to calculate TF For each review because if a restruant has a ton of discriptors the discriptors will be less important.
+
+
+Corpus: All the records(10,000)
+Document: Each Record
+Term: A word that could be in the Document
+
+
+Describes how important a word from the User Business is in the entire Corpus
+Add the TF-IDF of all the words in the Document to find similarity metric
+
+
+TF = Terms in the doc / Total number of terms in the Document
+
+Implementation: Every time you are looking at a document divide the 1 by the num words in the doc
+This will be the TF for every word in the doc
+
+
+***You have to calculate a new TF for each doc
+IDF = Log( Num documents / Num docs that conatin the Term)
+
+EX:
+
+Corpus: 10,000 Records
+Document: Each Record
+Term: "Bar"
+
+TF = 

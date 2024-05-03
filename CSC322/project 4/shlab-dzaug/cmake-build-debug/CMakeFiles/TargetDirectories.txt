@@ -1,0 +1,3 @@
+/home/zaugb/CLionProjects/CSC322/shlab/cmake-build-debug/CMakeFiles/shlab.dir
+/home/zaugb/CLionProjects/CSC322/shlab/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/zaugb/CLionProjects/CSC322/shlab/cmake-build-debug/CMakeFiles/rebuild_cache.dir
