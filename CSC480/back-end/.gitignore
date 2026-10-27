@@ -1,0 +1,15 @@
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+.mvn/wrapper/maven-wrapper.jar
+/home/raul/Documents/Projects/-OZ-CSC-480-HCI-521-Fall-2025-Public/back-end/src/main/liberty/config/server.xml
+
+# Environment variables
+.env
