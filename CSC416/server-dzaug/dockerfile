@@ -1,0 +1,37 @@
+#base image
+FROM public.ecr.aws/docker/library/golang:latest AS build
+
+# Copy source
+WORKDIR /build
+
+#get files
+COPY go.mod go.sum ./
+RUN go mod download
+COPY *.go ./
+
+#environment variables
+ENV LOGGLY_TOKEN=$LOGGLY_TOKEN
+
+#create excutable 
+RUN CGO_ENABLED=0 GOOS=linux go build -o main .
+
+#second stage
+FROM public.ecr.aws/docker/library/alpine:latest
+
+RUN apk update && \
+    apk upgrade && \
+    apk add ca-certificates && \
+    apk add tzdata
+
+#work directory
+WORKDIR /app
+
+# Copy files from previous build container
+COPY --from=build /build/main ./
+
+RUN pwd && find .
+
+#ports for requests
+EXPOSE 8080
+
+CMD ["./main"]
