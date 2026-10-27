@@ -1,2 +1,2 @@
 # Duncan's College Projects
-I repository for all my coding projects made for my classes at SUNY Oswego. 
+The repository for all my coding projects made for my classes at SUNY Oswego. 
