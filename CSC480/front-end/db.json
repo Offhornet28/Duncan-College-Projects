@@ -1,0 +1,73 @@
+{
+  "cards": [
+    {
+      "sender": "Mark",
+      "recipient": "Mark",
+      "subject": "Team Player",
+      "message": "Your support during the project crunch time was invaluable. The team couldn't have done it without you!",
+      "note": "test",
+      "id": "1",
+      "date": "9/13/25",
+      "status": "Rejected",
+      "recipientType": "teacher",
+      "senderType": "student",
+      "imageUrl": "/img/kudos1.png",
+      "read": false
+    },
+    {
+      "id": "2",
+      "recipientType": "student",
+      "senderType": "student",
+      "sender": "Sarah",
+      "recipient": "Alex",
+      "subject": "Great Job!",
+      "message": "Thank you for going above and beyond with the client presentation. Your attention to detail really made a difference!",
+      "status": "Reviewed",
+      "date": "9/13/25",
+      "imageUrl": "/img/kudos2.png",
+      "read": true
+    },
+    {
+      "id": "1758898242644",
+      "sender": "Jake",
+      "recipient": "Amy",
+      "subject": "You're a star!",
+      "message": "You did such a great job this week!",
+      "date": "9/26/2025",
+      "status": "Approved",
+      "recipientType": "student",
+      "senderType": "student",
+      "imageUrl": "/img/kudos1.png",
+      "read": false,
+      "note": ""
+    },
+    {
+      "id": "1758903007529",
+      "sender": "Michael",
+      "recipient": "Holly",
+      "subject": "Delicious!",
+      "message": "Delicious rocky mountain oysters!",
+      "date": "9/26/2025",
+      "status": "Approved",
+      "recipientType": "student",
+      "senderType": "student",
+      "imageUrl": "/img/kudos1.png",
+      "read": false,
+      "note": ""
+    },
+    {
+      "id": "1758987465261",
+      "sender": "John",
+      "recipient": "Joe",
+      "subject": "Good job",
+      "message": "Good job on that thing you did",
+      "date": "9/27/2025",
+      "status": "Rejected",
+      "recipientType": "teacher",
+      "senderType": "student",
+      "imageUrl": "/img/kudos1.png",
+      "read": false,
+      "note": "Not specific"
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+import React, { useState } from "react";
+import { useUser, authFetch } from "../components/UserContext";
+import { useNavigate } from "react-router-dom";
+
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+function ProfReview({ initialData, onClose }) {
+    const [formData, setFormData] = useState({
+        sender_id: initialData?.sender || "",
+        recipient_id: initialData?.recipient || "",
+        title: initialData?.title || "",
+        className: initialData?.class_name || "",
+        message: initialData?.message || initialData?.content || "",
+        note: initialData?.professor_note || "",
+        status: initialData.status
+    });
+
+    const [selectedStatus, setSelectedStatus] = useState("APPROVED");
+    const [rejectReason, setRejectReason] = useState("");
+    const { user } = useUser();
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleStatusChange = (status) => setSelectedStatus(status);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        // update status in db
+        try {
+            const updatedCard = {card_id: initialData.id,
+                                 approved_by: user.user_id,
+                                 status: selectedStatus,
+                                 professor_note: rejectReason + formData.note.trim(),
+                                };
+
+            console.log(updatedCard);
+            const res = await authFetch( `${BASE_URL}/kudo-card`,{
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(updatedCard),
+                }
+            );
+            if (!res.ok) throw new Error("Failed to update card.");
+            onClose();
+        } catch (error) {
+            console.error("Error updating card:", error);
+        }
+    };
+
+    return (
+    <div className="review-page">
+        <div className = "header-row">
+                <button onClick={onClose} className='icon-btn'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            className="lucide lucide-arrow-left-icon lucide-arrow-left">
+                        <path d="m12 19-7-7 7-7"/>
+                        <path d="M19 12H5"/>
+                    </svg>
+                </button>
+            <h2>Review Kudo Card</h2>
+        </div>
+
+        <div className="button-row">
+            <form onSubmit={handleSubmit}>
+                <div className="form-row">
+                    <div className="form-row horizontal-row">
+                        <div className="form-group">
+                            <label>Sender</label>
+                            <input
+                                className="to-from-title"
+                                name="sender_id"
+                                value={formData.sender_id}
+                                readOnly
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Recipient</label>
+                            <input
+                                className="to-from-title"
+                                name="recipient_id"
+                                value={formData.recipient_id}
+                                readOnly
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="from-row">
+                    <div className="form-row horizontal-row" >
+                        <div className="form-group">
+                            <label>Title</label>
+                            <input
+                                className="to-from-title"
+                                name="title"
+                                value={formData.title}
+                                readOnly
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Class</label>
+                            <input
+                                className="to-from-title"
+                                name="class"
+                                value={formData.className}
+                                readOnly
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                    <div className="form-group">
+                        <label>Message</label>
+                        <textarea
+                            className="textBox"
+                            name="message"
+                            value={formData.message}
+                            readOnly
+                            rows={4}
+                        />
+                    </div>
+
+                    {(formData.status === "PENDING") && (
+                        <div className="button-row">
+                            <button
+                                type="button"
+                                className={`approve-reject ${
+                                    selectedStatus === "APPROVED" ? "selected" : ""
+                                }`}
+                                onClick={() => handleStatusChange("APPROVED")}
+                            >
+                                Approve
+                            </button>
+                            <button
+                                type="button"
+                                className={`approve-reject ${
+                                    selectedStatus === "DENIED" ? "selected" : ""
+                                }`}
+                                onClick={() => handleStatusChange("DENIED")}
+                            >
+                                Reject
+                            </button>
+                        </div>
+                    )}
+
+                    {selectedStatus === "DENIED" && (
+                        <div>
+                        <div className="form-group">
+                        <label>Reason for Rejection:</label>
+                        <select 
+                            id ="rejectionReason" 
+                            name="rejectionReason" 
+                            className="textBox" 
+                            value={rejectReason}
+                            onChange={(e) => setRejectReason(e.target.value)}
+                            required
+                        >
+                            <option value=""> -- Select a reason -- </option>
+                            <option value="Not relevant to the class or learning content: ">Not relevant to the class or learning content</option>
+                            <option value="Inappropriate language: ">Inappropriate language</option>
+                            <option value="Incomplete or too short to be meaningful: ">Incomplete or too short to be meaningful</option>
+                            <option value="This Kudos duplicates a previous submission: ">This Kudos duplicates a previous submission</option>
+                            <option value="Submitted to the wrong section or group: ">Submitted to the wrong section or group</option>
+                            <option value="Other: ">Other</option>
+                        </select>
+                        </div>
+                        <div className="form-group">
+                            <label>Note to Student:</label>
+                            <textarea
+                                className="textBox"
+                                name="note"
+                                value={formData.note}
+                                onChange={handleChange}
+                                placeholder="Message to sender . . . (optional)"
+                                rows={4}
+                                maxLength={500}
+                            />
+                            </div>
+
+                            <div style={{ fontSize: "0.85rem", opacity: 0.7, padding: "10px" }}>
+                                {formData.note.length}/500
+                            </div>
+                        </div>   
+                    )}
+
+                    {(formData.status === "PENDING") && (
+                        <button type="submit" className="approve-reject" style={{width: "100%"}}>
+                            Submit
+                        </button> 
+                    )}
+
+                    {(formData.status === "DENIED") && (
+                        <div>
+                        <label>Note to Student:</label>
+                            <textarea
+                                className="textBox"
+                                name="note"
+                                value={rejectReason + formData.note.trim()}
+                                rows={4}
+                                maxLength={500}
+                                readOnly
+                            />
+                        </div>
+                    )}
+                    
+                </form>
+            </div>
+    </div>
+    );
+}
+export default ProfReview;
