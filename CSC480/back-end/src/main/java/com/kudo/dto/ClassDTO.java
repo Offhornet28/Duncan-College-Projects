@@ -1,0 +1,125 @@
+package com.kudo.dto;
+
+import jakarta.json.bind.annotation.JsonbDateFormat;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.BadRequestException;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.List;
+
+
+public class ClassDTO {
+    public static class UserIdList {
+        @NotNull
+        public List<String> user_id;  // field name must match JSON property
+
+        public UserIdList() {} // required default constructor
+    }
+
+    public static class ClassId {
+        @JsonbProperty("class_id")
+        private String class_id;
+
+        public ClassId( String class_id) {
+            this.class_id = class_id;
+        }
+
+        public String getClass_id() {
+            return class_id;
+        }
+
+        @Override
+        public String toString() {
+            String res =  "classIdsList{" +
+                    "classIds=";
+                res+= class_id;
+            return res + '}';
+        }
+    }
+
+    //Wrapper for list of kudos class IDs to allow automatic JSON binding
+    public static class ClassIdList {
+        @JsonbProperty("class_id")
+        private List<String> class_id;
+
+        public ClassIdList(List<String> class_id) {
+            this.class_id = class_id;
+        }
+
+        public List<String> getClass_id() {
+            return class_id;
+        }
+
+        @Override
+        public String toString() {
+            String res =  "classIdsList{" +
+                    "classIds=";
+            for(String str : class_id)
+                res+=str;
+            return res + '}';
+        }
+    }
+
+    public static class ClassCreate {
+        @NotNull
+        private String class_name;
+        @JsonbDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+        private LocalDateTime end_date;
+
+        public ClassCreate() {}
+        public ClassCreate(String class_name) {
+            this.class_name = class_name;
+        }
+
+        public ClassCreate(String class_name, LocalDateTime end_date) {
+            this.class_name = class_name;
+            this.end_date = end_date;
+        }
+
+        public String getClass_name() {
+            return class_name;
+        }
+
+        public void setClass_name(String class_name) {
+            this.class_name = class_name;
+        }
+
+        public LocalDateTime getEnd_date() {
+            return end_date;
+        }
+
+        public void setEnd_date(LocalDateTime end_date) {
+            this.end_date = end_date;
+        }
+    }
+
+    public static class ClassUpdate {
+
+    private String class_name;  // optional
+    @JsonbDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime end_date;  // optional
+    private Boolean archive;  // optional flag to bypass future-date validation
+
+    public ClassUpdate() {}
+
+    public String getClass_name() { return class_name; }
+    public void setClass_name(String class_name) { this.class_name = class_name; }
+
+    public LocalDateTime getEnd_date() { return end_date; }
+    public void setEnd_date(LocalDateTime end_date) { this.end_date = end_date; }
+
+    public Boolean getArchive() { return archive; }
+    public void setArchive(Boolean archive) { this.archive = archive; }
+
+    public Timestamp getEndDateAsTimestamp() {
+        if (end_date == null) return null;
+        try {
+            return Timestamp.valueOf(end_date);
+        } catch (IllegalArgumentException e) {
+            throw new BadRequestException("Invalid end_date format. Expected yyyy-MM-dd HH:mm:ss");
+        }
+    }
+}
+}
